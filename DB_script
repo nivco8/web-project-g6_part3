@@ -1,0 +1,111 @@
+# DB
+Drop schema if exists web_project_g6;
+create schema web_project_g6;
+use web_project_g6;
+DROP TABLE IF EXISTS CUSTOMERS;
+DROP TABLE IF EXISTS PRODUCTS;
+DROP TABLE IF EXISTS ORDERS;
+DROP TABLE IF EXISTS CART;
+DROP TABLE IF EXISTS REVIEWS;
+DROP TABLE IF EXISTS SEARCHES;
+DROP TABLE IF EXISTS RETREIVES;
+DROP TABLE IF EXISTS ProductsInCart;
+
+
+
+
+CREATE TABLE CUSTOMERS(
+    Email VARCHAR(100) not null,
+    FirstName VARCHAR(20),
+    LastName VARCHAR(20),
+    DateOfBirth DATE,
+    Gender VARCHAR(10),
+    PhoneNumber VARCHAR(10),
+    Address VARCHAR(100),
+    Country VARCHAR(20),
+    PRIMARY KEY (Email)
+    );
+
+
+CREATE TABLE PRODUCTS(
+    ProductID VARCHAR(20) not null,
+    ProductCategory boolean,
+    Price decimal(15,1),
+    Information VARCHAR(100),
+    PRIMARY KEY (ProductID)
+);
+
+
+CREATE TABLE ORDERS(
+    OrderID VARCHAR(20) not null,
+    CustomerEmail VARCHAR(100) not null,
+    OrderDate VARCHAR(20),
+    Address VARCHAR(100),
+    Discount decimal(15,1),
+    ShippingCost int,
+    ConfirmationNumber varchar(50),
+    PRIMARY KEY (orderID),
+    FOREIGN KEY (CustomerEmail) REFERENCES CUSTOMERS(Email)
+);
+
+CREATE TABLE CART(
+    CartID VARCHAR(20) not null,
+    CustomerEmail VARCHAR(100) not null,
+    Price decimal(15,1),
+    Address VARCHAR(100),
+    Discount decimal(15,1),
+    ShippingCost int,
+    ConfirmationNumber varchar(50),
+    PRIMARY KEY (CartID),
+    FOREIGN KEY (CustomerEmail) REFERENCES CUSTOMERS(Email)
+);
+
+
+CREATE TABLE REVIEWS(
+    ProductID VARCHAR(20) not null,
+    CustomerEmail VARCHAR(100) not null,
+    ReviewDT DATETIME,
+    Stars int,
+    Content varchar(20),
+    PRIMARY KEY (ProductID, CustomerEmail),
+    FOREIGN KEY (CustomerEmail) REFERENCES CUSTOMERS(Email),
+    FOREIGN KEY (ProductID) REFERENCES PRODUCTS(ProductID),
+    CONSTRAINT CK_Stars CHECK (Stars in (1,2,3,4,5))
+);
+
+
+CREATE TABLE SEARCHES(
+    IPaddress VARCHAR(40) not null,
+    SearchDT DATETIME not null,
+    CustomerEmail VARCHAR(100) not null,
+    Keyword varchar(30),
+    PRIMARY KEY (IPaddress, SearchDT),
+    FOREIGN KEY (CustomerEmail) REFERENCES CUSTOMERS(Email)
+);
+
+
+CREATE TABLE RETREIVES(
+    ProductID VARCHAR(20) not null,
+    SearchDT DATETIME not null,
+    IPaddress VARCHAR(40) not null,
+    Quantity int not null,
+    PRIMARY KEY (IPaddress, SearchDT, ProductID),
+    constraint fk_searches FOREIGN KEY (IPaddress) REFERENCES SEARCHES(IPaddress),
+    #, IPaddress),
+    FOREIGN KEY (ProductID) REFERENCES PRODUCTS(ProductID)
+   # FOREIGN KEY () REFERENCES SEARCHES(IPaddress)
+);
+
+
+CREATE TABLE ProductsInCart(
+    CustomerEmail VARCHAR(100) not null,
+    ProductID VARCHAR(20) not null,
+    SaveDT DATETIME not null,
+    PRIMARY KEY (CustomerEmail, ProductID),
+    FOREIGN KEY (ProductID) REFERENCES PRODUCTS(ProductID),
+    FOREIGN KEY (CustomerEmail) REFERENCES CUSTOMERS(Email)
+);
+
+
+INSERT INTO PRODUCTS(ProductID,ProductCategory,Price,Information) VALUES ('1',TRUE,150,'עוגת שוקולד');
+
