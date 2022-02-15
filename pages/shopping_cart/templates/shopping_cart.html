@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'CAKES' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('shopping_cart.static', filename='css/shopping_cart.css') }}">
+{% endblock %}
+
+
+{% block page_body_main_content %}
+
+
+    <!------- Center --------->
+    <div id="MainCenter" class="container" dir=rtl>
+        <h1 class="title">עגלת קניות</h1>
+        <div class="option1">
+            <!------- כותרת מוצר--------->
+            <h2 class="">מוצר מספר 1</h2> <br>
+            <img src="Images/cakes/chocolate.jpg" width=10% height=auto>
+            <!------- כותרת מחיר--------->
+            <h3 class="PriceTag">50 שח</h3><br>
+            <!------- כפתור הוספה לעגלה של המוצר--------->
+            <!------- כשמוסיפים מוצר חשוב לשנות את ID מחיר ועוד--------->
+            <button type="button" class="btn btn-block btn-outline-primary"
+                    onClick="cartLS.add({id: 1, name: 'Procduct1', price: 50})">הוסף לעגלה</button>
+        </div>
+        <div class="option2">
+            <!------- כותרת מוצר--------->
+            <h2 class="">מוצר מספר 2</h2> <br>
+            <img src="Images/cakes/chocolate.jpg" width=10% height=auto>
+            <!------- כותרת מחיר--------->
+            <h3 class="PriceTag">60 שח</h3><br>
+            <!------- כפתור הוספה לעגלה של המוצר--------->
+            <!------- כשמוסיפים מוצר חשוב לשנות את ID מחיר ועוד--------->
+            <button type="button" class="btn btn-block btn-outline-primary"
+                    onClick="cartLS.add({id: 2, name: 'Procduct2', price: 60})">הוסף לעגלה</button>
+        </div>
+        <div class="option3">
+            <!------- כותרת מוצר--------->
+            <h2 class="">מוצר מספר 3</h2> <br>
+            <img src="Images/cakes/chocolate.jpg" width=10% height=auto>
+            <!------- כותרת מחיר--------->
+            <h3 class="PriceTag">80 שח</h3><br>
+            <!------- כפתור הוספה לעגלה של המוצר--------->
+            <!------- כשמוסיפים מוצר חשוב לשנות את ID מחיר ועוד--------->
+            <button type="button" class="btn btn-block btn-outline-primary"
+                    onClick="cartLS.add({id: 3, name: 'Procduct3', price: 80})">הוסף לעגלה</button>
+        </div>
+
+        <div class="option4">
+            <!------- כותרת מוצר--------->
+            <h2 class="">מוצר מספר 4</h2> <br>
+            <img src="Images/cakes/chocolate.jpg" width=10% height=auto>
+            <!------- כותרת מחיר--------->
+            <h3 class="PriceTag">100 שח</h3><br>
+            <!------- כפתור הוספה לעגלה של המוצר--------->
+            <!------- כשמוסיפים מוצר חשוב לשנות את ID מחיר ועוד--------->
+            <button type="button" class="btn btn-block btn-outline-primary"
+                    onClick="cartLS.add({id: 4, name: 'Procduct4', price: 100})">הוסף לעגלה</button>
+        </div>
+        
+
+        <div class="sumUp">
+            <!------- כפתור לאיפוס העגלה--------->
+            <br><br>
+            <button class="buttonProduct" onClick="cartLS.destroy()">לחצ/י על מנת לאפס את העגלה</button><br><br>
+            <div class="card-body">
+                <!------- עיצוב--------->
+                <style>
+                    table {
+                        border-collapse: collapse;
+                        border-spacing: 0;
+                        width: 100%;
+                        border: 1px solid #ddd;
+                    }
+                    tr:nth-child(even) {
+                        background-color: lightblue;
+                    }
+                </style>
+
+                <table class="tableCart">
+                    <thead class="ext-right">
+                    <td></td>
+                    <td>מס' מוצר</td>
+                    <td>שם</td>
+                    <td></td>
+                    <td>כמות</td>
+                    <td></td>
+                    <td>סה"כ</td>
+                    </thead>
+
+                    <tbody class="cart">
+                    </tbody>
+
+                    <tfoot>
+                    <td class="text-right">סך הכל לתשלום:   <strong class="total"></strong></td>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <script>
+            function renderCart(items) {
+                const $cart = document.querySelector(".cart")
+                const $total = document.querySelector(".total")
+
+                $cart.innerHTML = items.map((item) => `
+                        <tr>
+                                                <!-------כפתור להסרה--------->
+                            <td class="text-right"><Button class="btn btn-primary" onClick="cartLS.remove(${item.id})">X</Button></td>
+                            <td>#${item.id}</td>
+                            <td style="width: 400px;">${item.name}</td>
+                            <td style="width: 25px;">
+                                <button type="button" class="btn btn-block btn-sm btn-outline-primary"
+                                    onClick="cartLS.quantity(${item.id},1)">+</button>
+                            </td>
+                            <td>${item.quantity}</td>
+                            <td style="width: 25px;">
+                                <button type="button" class="btn btn-block btn-sm btn-outline-primary"
+                                    onClick="cartLS.quantity(${item.id},-1)">-</button>
+                            </td>
+                            <td class="text-right">שח${item.price}</td>
+
+
+                        </tr>`).join("")
+
+                $total.innerHTML = "שח  " + cartLS.total()
+            }
+            renderCart(cartLS.list())
+            cartLS.onChange(renderCart)
+        </script>
+
+        <div class="sumBottom">
+            <br>
+            <label for="shipping" class="labels"><b>אופן המשלוח (סמנ/י)</b></label><br><br>
+            <input type="radio" id="delivery" name="shipping" value="delivery">
+            <label for="optionA">משלוח</label><br>
+            <input type="radio" id="shopping_cart" name="shipping" value="shopping_cart">
+            <label for="optionB">איסוף עצמי</label><br><br>
+            <button onclick="complete_action()" class="button1" type="submit" class="label">המשך</button>
+        </div>
+
+    
+        <!-- directs according to user choice -->
+        <script>
+            function complete_action() {
+                var payment = document.getElementsByName('shipping'); 
+                if (payment[0].checked){
+                    window.location.href = "Delivery.html";
+                }
+                else if (payment[1].checked){
+                    window.location.href = "shopping_cart.html";
+                }
+            }
+        </script>
+        
+    </div>
+
+{% endblock %}
+
+
+
+        
+
+{% block page_body_js %}
+    <script src="{{ url_for('shopping_cart.static', filename='css/shopping_cart.js') }}"></script>
+{% endblock %}

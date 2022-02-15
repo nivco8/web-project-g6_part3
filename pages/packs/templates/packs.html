@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'CAKES' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('packs.static', filename='css/packs.css') }}">
+{% endblock %}
+
+{% block page_body_main_content %}
+    <div class="packs">
+
+        <div class="title">
+            <h2 for= "cake1">תוכלו לבחור עד חמישה קינוחים  ולפחות 2 ולהרכיב מארז לבחירתכם</h2>
+            <h2 for= "cake1">מארזי קינוחים זאת האופציה המושלמת למי שפשוט לא יכולים להחליט</h2>
+        </div>
+
+        <div class="option1">
+            <param id="first_option" value="crack pai">
+            <h1 for= "option1">פרוסת קראק פאי</h1>
+            <h2 for= "option1">מחיר: 35 שח</h2>
+            <label for="quantity">כמות</label>
+            <input id= "quantity1" for= "add1" type ="number">
+            <button id="add1" onclick="add_item_to_pack(quantity1, first_option)">הוסף למארז</button>
+            <img id="option1" src="{{ url_for('packs.static', filename='media/crack_pai.jpg') }}" alt="crack_pai">
+        </div>
+
+        <div class="option2">
+            <param id="second_option" value="קינוח פטל">
+            <h1 for= "option2">קינוח פטל</h1>
+            <h2 for= "option2">מחיר: 35 שח</h2>
+            <label for="quantity">כמות</label>
+            <input id= "quantity2" for= "add2" type ="number">
+            <button id="add2" onclick="add_item_to_pack(quantity2, second_option)">הוסף למארז</button>
+            <img id="option2" src="{{ url_for('packs.static', filename='media/petel.jpg') }}" alt="petel">
+        </div>
+
+        <div class="option3">
+            <param id="third_option" value="סנט הונורה קטן">
+            <h1 for= "option3">סנט הונורה קטן</h1>
+            <h2 for= "option3">מחיר: 35 שח</h2>
+            <label for="quantity">כמות</label>
+            <input id= "quantity3" for= "add3" type ="number" >
+            <button id="add3" onclick="add_item_to_pack(quantity3, third_option)">הוסף למארז</button>
+            <img id="option3" src="{{ url_for('packs.static', filename='media/saint_small.jpg') }}" alt="saint">
+        </div>
+
+        <div class="option4">
+            <param id="forth_option" value="פאי אוכמניות קטן">
+            <h1 for= "option4">פאי אוכמניות קטן</h1>
+            <h2 for= "option4">מחיר: 35 שח</h2>
+            <label for="quantity">כמות</label>
+            <input id= "quantity4" for= "add4" type ="number">
+            <button id="add4" onclick="add_item_to_pack(quantity4, forth_option)">הוסף למארז</button>
+            <img id="option4" src="{{ url_for('packs.static', filename='media/blueberries.jpg') }}" alt="blueberries">
+        </div>
+
+        <div class="sum">
+            <param id="pack_quantity" value=0>
+            <h1>קינוחים שנבחרו</h1>
+            <li id="list"></li>
+            <br>
+            <a href="shoppingCart.html"><button>הוסף מארז לעגלה</button></a>
+            <br>
+            <button onclick="clear_list()" >נקה בחירה</button>
+        </div>
+
+    </div>
+{% endblock %}
+
+<script src="{{ url_for('packs.static', filename='js/packs.js') }}"></script>
+
+

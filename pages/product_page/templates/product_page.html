@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+
+{% set page_head_title = 'product_page' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('product_page.static', filename='css/product_page.css') }}">
+{% endblock %}
+
+{% block page_body_main_content %}
+    <div class="cakes">
+        <div class="product">
+            <img id="product" src="{{ url_for('cakes.static', filename='media/strawberries.jpg') }}" alt= "strawberries pai">
+        </div>
+        <div class="description">
+            <h1>עוגת תותים מפנקת ועשירה</h1>
+            <h2>מחיר: 220 שח</h2>
+            <br>
+            <label for="quantity">כמות</label>
+            <input id= "quantity" type ="number" min="0">
+            <br>
+            <br>
+            <a href="shoppingCart.html"><button onclick="check_amount(quantity)">הוסף לעגלה</button></a>
+
+        </div>
+    </div>
+{% endblock %}

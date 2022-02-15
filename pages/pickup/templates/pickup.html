@@ -1,0 +1,54 @@
+
+{% extends 'base.html' %}
+
+{% set page_head_title = 'CAKES' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('pickup.static', filename='css/pickup.css') }}">
+{% endblock %}
+
+{% block page_body_main_content %}
+    <div id="Container" class="grid-container" dir=rtl>
+
+        <div id="MainCenter" class="Center">
+            <h1 class="title1">איסוף עצמי</h1>
+            <span>בחר תאריך</span>
+            <input type="date" required> <br><br><br>
+            <span>בחר שעה</span>
+            <select name="" id="" class="year-input" required>
+                <option value="time" selected disabled>שעת האיסוף</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+                <option value="14:30">14:30</option>
+            </select> <br> <br> <br>
+            <span>בחר את אופן התשלום</span> <br><br>
+            <input type="radio" id="cash" name="payment" value="cash">
+            <label for="optionA">מזומן</label><br>
+            <input type="radio" id="creditcard" name="payment" value="creditcard">
+            <label for="optionB">כרטיס אשראי</label><br><br>
+            <button onclick="complete_action()" class="button1" type="submit" class="label">המשך</button>
+
+            <!-- directs according to user choice -->
+            <script>
+                function complete_action() {
+                    var payment = document.getElementsByName('payment'); 
+                    if (payment[0].checked){
+                        window.alert('תודה ולהתראות')
+                    }
+                    else if (payment[1].checked){
+                        window.location.href = "payment.html";
+                    }
+                }
+            </script>
+            <br><br>
+            <img src="{{ url_for('packs.static', filename='media/pack_love.jpg') }}" alt="pack" width=30% height=auto>
+        </div>
+    </div>    
+{% endblock %}

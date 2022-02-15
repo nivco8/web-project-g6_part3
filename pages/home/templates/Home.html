@@ -1,0 +1,41 @@
+﻿
+{% extends 'base.html' %}
+
+{% set page_head_title = 'home' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('home.static', filename='css/Home.css') }}">
+{% endblock %}
+
+
+{% block page_body_main_content %}
+    <div class="main">
+
+        <div id="top_pic">
+            <img src="{{ url_for('cakes.static', filename='media/chocolate.jpg') }}" width=100% height=100%>
+        </div>
+
+        <div class="about" id="about">
+            <h1>Lumière</h1>
+            <h2>אצלנו תמצוא מגוון עוגות ודברי מאפה</h2>
+            <h2>לומייר קמה ופועלת בהנהלת אור כהן</h2>
+            <h2>לאור ניסיון רב בהכנת דברי מאפה מכל הסוגים</h2>
+            <h2>    אז כשתצטרכו עוגה לאירוע, חגיגה או סתם לערב של כיף בבית    </h2>
+            <h2>תזמינו מאור ותגדלו עולם של טוב</h2>
+        </div>
+
+        <div class="cat">
+            <h1>קטגוריות</h1>
+        </div>
+
+        <div class="packs">
+            <h1 for= "category1">מארזים חגיגיים</h1>
+            <a href="packs" id="category1" title="מארזים חגיגיים"><img src="{{ url_for('packs.static', filename='media/pack1.jpg') }}" width= 200px height= 200px></a>
+        </div>
+
+        <div class="cakes">
+            <h1 for= "category2">עוגות גדולות</h1>
+            <a href="cakes"id="category2"> <img src="{{ url_for('cakes.static', filename='media/strawberries.jpg') }}" width= 200px height= 200px></a>
+        </div>
+    </div>
+{% endblock %}
