@@ -11,7 +11,7 @@ def interact_db(query, query_type: str):
     connection = mysql.connector.connect(host='localhost',
                                          user='root',
                                          passwd='root',
-                                         database='web_project_g16')
+                                         database='web_project_g6')
     cursor = connection.cursor(named_tuple=True)
     cursor.execute(query)
     #

@@ -14,15 +14,12 @@
             {% block page_head_meta_extra %}{% endblock %}
         {% endblock %}
 
-        {# favicon #}
-        <link rel="icon" href="{{ url_for('static', filename='media/img/favicon/flask-favicon.png') }}"/>
-
         {# Base #}
         <base href="/"/>
 
         {# CSS #}
         {% block page_head_css %}{% endblock %}
-    {% endblock %}
+        {% endblock %}
     </head>
     <body>
         {% block page_body_content %}

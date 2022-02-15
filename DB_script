@@ -2,7 +2,7 @@
 Drop schema if exists web_project_g6;
 create schema web_project_g6;
 use web_project_g6;
-DROP TABLE IF EXISTS CUSTOMERS;
+DROP TABLE IF EXISTS USERS;
 DROP TABLE IF EXISTS PRODUCTS;
 DROP TABLE IF EXISTS ORDERS;
 DROP TABLE IF EXISTS CART;
@@ -14,17 +14,17 @@ DROP TABLE IF EXISTS ProductsInCart;
 
 
 
-CREATE TABLE CUSTOMERS(
-    Email VARCHAR(100) not null,
-    FirstName VARCHAR(20),
-    LastName VARCHAR(20),
-    DateOfBirth DATE,
-    Gender VARCHAR(10),
-    PhoneNumber VARCHAR(10),
-    Address VARCHAR(100),
-    Country VARCHAR(20),
+CREATE TABLE USERS(
+    email VARCHAR(100) not null,
+    password VARCHAR(50),
+    full_name VARCHAR(50),
+    phone VARCHAR(50),
+    address VARCHAR(100),
+    country VARCHAR(100),
+    birthday date,
     PRIMARY KEY (Email)
     );
+
 
 
 CREATE TABLE PRODUCTS(
@@ -45,7 +45,7 @@ CREATE TABLE ORDERS(
     ShippingCost int,
     ConfirmationNumber varchar(50),
     PRIMARY KEY (orderID),
-    FOREIGN KEY (CustomerEmail) REFERENCES CUSTOMERS(Email)
+    FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email)
 );
 
 CREATE TABLE CART(
@@ -57,7 +57,7 @@ CREATE TABLE CART(
     ShippingCost int,
     ConfirmationNumber varchar(50),
     PRIMARY KEY (CartID),
-    FOREIGN KEY (CustomerEmail) REFERENCES CUSTOMERS(Email)
+    FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email)
 );
 
 
@@ -68,7 +68,7 @@ CREATE TABLE REVIEWS(
     Stars int,
     Content varchar(20),
     PRIMARY KEY (ProductID, CustomerEmail),
-    FOREIGN KEY (CustomerEmail) REFERENCES CUSTOMERS(Email),
+    FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email),
     FOREIGN KEY (ProductID) REFERENCES PRODUCTS(ProductID),
     CONSTRAINT CK_Stars CHECK (Stars in (1,2,3,4,5))
 );
@@ -80,7 +80,7 @@ CREATE TABLE SEARCHES(
     CustomerEmail VARCHAR(100) not null,
     Keyword varchar(30),
     PRIMARY KEY (IPaddress, SearchDT),
-    FOREIGN KEY (CustomerEmail) REFERENCES CUSTOMERS(Email)
+    FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email)
 );
 
 
@@ -103,7 +103,7 @@ CREATE TABLE ProductsInCart(
     SaveDT DATETIME not null,
     PRIMARY KEY (CustomerEmail, ProductID),
     FOREIGN KEY (ProductID) REFERENCES PRODUCTS(ProductID),
-    FOREIGN KEY (CustomerEmail) REFERENCES CUSTOMERS(Email)
+    FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email)
 );
 
 
