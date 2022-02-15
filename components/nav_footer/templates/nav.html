@@ -1,26 +1,32 @@
 
+{# CSS #}
+<link rel="stylesheet" href="{{ url_for('nav_footer.static', filename='css/nav_footer.css') }}"/>
+
 <!------- nav bar --------->
 <div class="navBar" id="navbar">
 
     <div >
-        <a href="Home.html"><img  id="logo" src="temp.jpeg" alt= "logo_image"></a>
+        <a href=""> <img id="logo" src="{{ url_for('nav_footer.static', filename='media/logo.jpeg') }}" alt = "logo"></a>
     </div>
 
-    <a id="signin" href="Signin.html">כניסה</a>
-    <a id="signup" href="Signup.html">הרשמה</a>
+    <a id="signin" href="signin">כניסה</a>
+    <a id="signup" href="signup">הרשמה</a>
 
     <div class="links">
         <a href="https://goo.gl/maps/Ror8JerRBGjeHwZ4A">מיקום העסק</a>
         <br>
         <a href="https://waze.com/ul?il=32.08051,34.81238&navigate=yes">ניווט לעסק</a>
         <br>
-        <a href="termsNprivacy.html">תנאי שימוש באתר</a>
+        <a href="termsNprivacy">תנאי שימוש באתר</a>
         <br>
-        <a href="contactUs.html">צור קשר</a>
+        <a href="contact_us">צור קשר</a>
         <br>
-        <a href="newsletter.html">הרשמה לניוזלטר</a>
+        <a href="newsletter">הרשמה לניוזלטר</a>
     </div>
 
 </div>
+
+<script src="{{ url_for('nav_footer.static', filename='js/nav.js') }}"></script>
+
 
 

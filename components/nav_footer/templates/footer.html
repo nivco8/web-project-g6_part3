@@ -1,9 +1,11 @@
 <!-- FOOTER -->
 
+<link rel="stylesheet" href="{{ url_for('nav_footer.static', filename='css/nav_footer.css') }}"/>
 
 <div class="footerNavBar">
+
     <div class="follow_us">
-        <a href="https://www.instagram.com/lumiere_or/"> <img id="follow"src="/static/media/img/favicon/follow_us.png" alt = "follow us"></a>
+        <a href="https://www.instagram.com/lumiere_or/"> <img id="follow" src="{{ url_for('nav_footer.static', filename='media/instagram.png') }}" alt = "follow us"></a>
     </div>
 
     <div class="details" >
@@ -13,4 +15,4 @@
 
     </div>
 </div>
-<script src="nav.js"></script>
+

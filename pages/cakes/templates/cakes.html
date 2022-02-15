@@ -3,7 +3,7 @@
 {% set page_head_title = 'CAKES' %}
 
 {% block page_head_css %}
-    <link rel="stylesheet" href="/pages/cakes/static/css/cakes.css">
+    <link rel="stylesheet" href="{{ url_for('cakes.static', filename='css/cakes.css') }}">
 {% endblock %}
 
 {% block page_body_main_content %}
@@ -12,32 +12,25 @@
                 <div>
                     <h1 for= "cake1">עוגת תותים</h1>
                     <h2 for= "cake1">מחיר: 220 שח</h2>
-                    <img id="cake1" src="/pages/cakes/static/media/strawberries.jpg" href="product_page.html"  alt= "strawberries">
+                    <img id="cake1" src="{{ url_for('cakes.static', filename='media/strawberries.jpg') }}" alt="strawberries">
                 </div>
                 <div>
                     <h1 for= "cake2">סנט הונורה</h1>
                     <h2 for= "cake2">עוגה צרפתית קלאסית</h2>
                     <h2 for= "cake2">מחיר: 240 שח</h2>
-                    <img id="cake2" src="/static/media/saint.jpg" href="product_page.html"  alt= "saint honore">
+                    <img id="cake2" src="{{ url_for('cakes.static', filename='media/saint.jpg') }}" alt="saint honore">
                 </div>
                 <div>
                     <h1 for= "cake3">קראק פאי</h1>
                     <h2 for= "cake3">מחיר: 240 שח</h2>
-                    <img id="cake3" src="/pages/cakes/static/media/crack_pai.jpg" href="product_page.html"  alt= "crack_pai">
+                    <img id="cake3" src="{{ url_for('cakes.static', filename='media/crack_pai.jpg') }}" alt="crack_pai">
                 </div>
                 <div>
                     <h1 for= "cake4">פאי שוקולד מפנק</h1>
                     <h2 for= "cake4">מחיר: 240 שח</h2>
-                    <img id="cake4" src="/pages/cakes/static/media/chocolate.png" href="product_page.html"  alt= "cake chocolate">
+                    <img id="cake4" src="{{ url_for('cakes.static', filename='media/chocolate.png') }}" alt="chocolate">
                 </div>
             </div>
       </main>
 {% endblock %}
 
-
-{% block page_body_js %}
-    <script src="nav.js"></script>
-{% endblock %}
-
-</body>
-</html>

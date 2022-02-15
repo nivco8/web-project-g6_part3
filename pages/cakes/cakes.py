@@ -5,6 +5,6 @@ cakes = Blueprint('cakes', __name__, static_folder='static', static_url_path='/c
 
 
 # Routes
-@cakes.route('/cakes')
+@cakes.route('/cakes', methods=['GET', 'POST'])
 def index():
     return render_template('cakes.html')
