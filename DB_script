@@ -116,4 +116,9 @@ INSERT INTO PRODUCTS(ProductName,IsInStock,Price) VALUES ('פרוסת קראק �
 INSERT INTO PRODUCTS(ProductName,IsInStock,Price) VALUES ('פאי אוכמניות קטן',TRUE,35);
 INSERT INTO PRODUCTS(ProductName,IsInStock,Price) VALUES ('סנט הונורה קטן',TRUE,35);
 
-
+INSERT INTO USERS(Email,Password,FullName,Phone,Address,Birthday,Country) VALUES
+('idan123@gmail.com','12345678','עידן לוי','0507513245','המרד 7 הרצליה','1995-07-30','ישראל');
+INSERT INTO USERS(Email,Password,FullName,Phone,Address,Birthday,Country) VALUES
+('shimi123@gmail.com','87654321','שמעון שלו','0507433245','החלל 9 נתניה','1992-12-17','ישראל');
+INSERT INTO USERS(Email,Password,FullName,Phone,Address,Birthday,Country) VALUES
+('avi8@gmail.com','88888888','אבי שמונה','0508888888','קריית שלום 8 תל אביב','1988-08-08','ישראל');
