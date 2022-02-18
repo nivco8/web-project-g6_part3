@@ -30,7 +30,7 @@ CREATE TABLE USERS(
 CREATE TABLE PRODUCTS(
     ProductID MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
     ProductName VARCHAR(200),
-    IsInStock BOOLEAN,
+    ProductCategory BOOLEAN,
     Price DECIMAL(15,1),
     PRIMARY KEY (ProductID)
 );
@@ -107,14 +107,14 @@ CREATE TABLE ProductsInCart(
 );
 
 
-INSERT INTO PRODUCTS(ProductName,IsInStock,Price) VALUES ('סנט הונורה - עוגה צרפתית קלאסית',TRUE,240);
-INSERT INTO PRODUCTS(ProductName,IsInStock,Price) VALUES ('עוגת תותים',TRUE,220);
-INSERT INTO PRODUCTS(ProductName,IsInStock,Price) VALUES ('פאי שוקולד מפנק',TRUE,240);
-INSERT INTO PRODUCTS(ProductName,IsInStock,Price) VALUES ('קראק פאי',TRUE,240);
-INSERT INTO PRODUCTS(ProductName,IsInStock,Price) VALUES ('קינוח פטל',TRUE,35);
-INSERT INTO PRODUCTS(ProductName,IsInStock,Price) VALUES ('פרוסת קראק פאי',TRUE,35);
-INSERT INTO PRODUCTS(ProductName,IsInStock,Price) VALUES ('פאי אוכמניות קטן',TRUE,35);
-INSERT INTO PRODUCTS(ProductName,IsInStock,Price) VALUES ('סנט הונורה קטן',TRUE,35);
+INSERT INTO PRODUCTS(ProductName,ProductCategory,Price) VALUES ('סנט הונורה - עוגה צרפתית קלאסית',FALSE,240);
+INSERT INTO PRODUCTS(ProductName,ProductCategory,Price) VALUES ('עוגת תותים',FALSE,220);
+INSERT INTO PRODUCTS(ProductName,ProductCategory,Price) VALUES ('פאי שוקולד מפנק',FALSE,240);
+INSERT INTO PRODUCTS(ProductName,ProductCategory,Price) VALUES ('קראק פאי',FALSE,240);
+INSERT INTO PRODUCTS(ProductName,ProductCategory,Price) VALUES ('קינוח פטל',TRUE,35);
+INSERT INTO PRODUCTS(ProductName,ProductCategory,Price) VALUES ('פרוסת קראק פאי',TRUE,35);
+INSERT INTO PRODUCTS(ProductName,ProductCategory,Price) VALUES ('פאי אוכמניות קטן',TRUE,35);
+INSERT INTO PRODUCTS(ProductName,ProductCategory,Price) VALUES ('סנט הונורה קטן',TRUE,35);
 
 INSERT INTO USERS(Email,Password,FullName,Phone,Address,Birthday,Country) VALUES
 ('idan123@gmail.com','12345678','עידן לוי','0507513245','המרד 7 הרצליה','1995-07-30','ישראל');
