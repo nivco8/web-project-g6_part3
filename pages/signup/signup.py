@@ -6,9 +6,10 @@ signup = Blueprint('signup', __name__, static_folder='static', static_url_path='
 
 
 # Routes
+@signup.route('/pages/signup/templates/signup.html', methods=['GET', 'POST'])
 @signup.route('/signup', methods=['GET', 'POST'])
 def index():
-    return render_template('signup.html')
+    return render_template('/signup.html')
 
 
 @signup.route('/insert_user', methods=['POST'])

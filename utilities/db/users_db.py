@@ -8,7 +8,7 @@ class DBusers:
         check_input = "SELECT email FROM web_project_g6.users WHERE email='%s';" % email
         answer = interact_db(query=check_input, query_type='fetch')
         if len(answer) == 0:
-            query = "insert into web_project_g6.users (password, email, full_name, phone, address, country, birthday)\
+            query = "insert into web_project_g6.users (Password, Email, FullName, Phone, Address, Country, Birthday)\
                             value ('%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (password, email, full_name, phone, address, country, birthday)
             interact_db(query=query, query_type='commit')
             # message
