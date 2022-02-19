@@ -17,21 +17,26 @@ class DBusers:
             flash('user already exists!')
             return False
 
-    # def check_user_signIn(self, username, password):
-    #     check_username = "SELECT username FROM web_project_g16.users WHERE username='%s';" % username
-    #     answer = interact_db(query=check_username, query_type='fetch')
-    #     if len(answer) == 0:
-    #         return False
-    #
-    #     else:
-    #         get_password = "SELECT password FROM web_project_g16.users WHERE username='%s';" % username
-    #         answer = interact_db(query=get_password, query_type='fetchone')
-    #         print(answer[0])
-    #         if answer[0] == password:
-    #             return True
-    #         else:
-    #             return False
-    #
+    def find_user_in_db(self, email, password):
+        get_user_name = "select email from web_project_g6.users where email='%s';" % email
+        answer = interact_db(query=get_user_name, query_type='fetch')
+        if len(answer) == 0:
+            return False
+        else:
+            get_password = "SELECT Password FROM web_project_g16.users WHERE email='%s';" % email
+            answer = interact_db(query=get_password, query_type='fetchone')
+            if answer[0] == password:
+                return True
+            else:
+                return False
+
+    def get_user_details(self, email):
+        get_details = "select * from web_project_g6.users where email='%s';" % email
+        ans = interact_db(query=get_details, query_type='fetch')
+        return ans
+
+
+
     # def update_user_email(self, username, detail):
     #     query = "UPDATE web_project_g16.users SET email='%s' WHERE username='%s';" % (detail, username)
     #     answer = interact_db(query=query, query_type='commit')

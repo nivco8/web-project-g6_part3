@@ -36,28 +36,26 @@ CREATE TABLE PRODUCTS(
 );
 
 
+CREATE TABLE CART(
+    CartID MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
+    CustomerEmail VARCHAR(100) NOT NULL,
+    Price DECIMAL(15,1),
+    ShippingCost DECIMAL(15,1),
+    TotalPrice DECIMAL(15,1),
+    PRIMARY KEY (CartID),
+    FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email)
+);
+
+
 CREATE TABLE ORDERS(
     OrderID MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
     CustomerEmail VARCHAR(100) NOT NULL,
     OrderDate VARCHAR(20),
     Address VARCHAR(100),
-    Discount DECIMAL(15,1),
-    ShippingCost INT,
-    ConfirmationNumber varchar(50),
+    CartID MEDIUMINT,
     PRIMARY KEY (orderID),
-    FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email)
-);
-
-CREATE TABLE CART(
-    CartID MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
-    CustomerEmail VARCHAR(100) NOT NULL,
-    Price DECIMAL(15,1),
-    Address VARCHAR(100),
-    Discount DECIMAL(15,1),
-    ShippingCost INT,
-    ConfirmationNumber VARCHAR(50),
-    PRIMARY KEY (CartID),
-    FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email)
+    FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email, Address)
+    FOREIGN KEY (CartID) REFERENCES CART(CartID, TotalPrice)
 );
 
 
@@ -74,35 +72,14 @@ CREATE TABLE REVIEWS(
 );
 
 
-CREATE TABLE SEARCHES(
-    IPaddress VARCHAR(40) NOT NULL,
-    SearchDT DATETIME NOT NULL,
-    CustomerEmail VARCHAR(100) NOT NULL,
-    Keyword VARCHAR(30),
-    PRIMARY KEY (IPaddress, SearchDT),
-    FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email)
-);
-
-
-CREATE TABLE RETRIEVES(
-    ProductID MEDIUMINT NOT NULL,
-    SearchDT DATETIME NOT NULL,
-    IPaddress VARCHAR(40) NOT NULL,
-    Quantity INT NOT NULL,
-    PRIMARY KEY (IPaddress, SearchDT, ProductID),
-    CONSTRAINT fk_searches FOREIGN KEY (IPaddress) REFERENCES SEARCHES(IPaddress),
-    #, IPaddress),
-    FOREIGN KEY (ProductID) REFERENCES PRODUCTS(ProductID)
-   # FOREIGN KEY () REFERENCES SEARCHES(IPaddress)
-);
-
-
 CREATE TABLE ProductsInCart(
     CustomerEmail VARCHAR(100) NOT NULL,
+    CartID MEDIUMINT,
     ProductID MEDIUMINT NOT NULL,
-    SaveDT DATETIME NOT NULL,
-    PRIMARY KEY (CustomerEmail, ProductID),
+    Quantity INT,
+    PRIMARY KEY (CustomerEmail, ProductID, CartID),
     FOREIGN KEY (ProductID) REFERENCES PRODUCTS(ProductID),
+    FOREIGN KEY (CartID) REFERENCES CARTS(CartID),
     FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email)
 );
 

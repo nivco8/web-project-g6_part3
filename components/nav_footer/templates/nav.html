@@ -9,8 +9,17 @@
         <a href=""> <img id="logo" src="{{ url_for('nav_footer.static', filename='media/logo.jpeg') }}" alt = "logo"></a>
     </div>
 
-    <a id="signin" href="signin">כניסה</a>
-    <a id="signup" href="signup">הרשמה</a>
+    {%  if session.logged_in %}
+        <label class=enter > שלום {{ session.user_data['fullname'] }}  </label>
+{#            <label class=enter > Hello {{ session.name['name'] }}  </label>#}
+        <a href="/Signout">
+            <button id="signin"> התנתקות</button> <br> <br>
+        </a>
+    {% else %}
+        <a id="signin" href="signin">כניסה</a>
+        <a id="signup" href="signup">הרשמה</a>
+    {% endif %}
+
 
     <div class="links">
         <a href="https://goo.gl/maps/Ror8JerRBGjeHwZ4A">מיקום העסק</a>
@@ -22,6 +31,8 @@
         <a href="contact_us">צור קשר</a>
         <br>
         <a href="newsletter">הרשמה לניוזלטר</a>
+        <br>
+        <a href="review">כתוב ביקורת</a>
     </div>
 
 </div>

@@ -10,9 +10,8 @@
 
 {% block page_body_main_content %}
     <div class="grid_container">
-                
         <div class="Center">
-             <form action="action_page.php">
+             <form method="POST" action="/action_page.php">
                 <div class="info">
                     <h1 class="title1">התחברות</h1>
 
@@ -29,7 +28,10 @@
                     </a>
                     <br><br>
                 </div>
-            </form>    
+            </form>
+            {% if session.user_not_match %}
+                <a>שם משתמש/סיסמה שגויים. אנא נסה שנית.</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
