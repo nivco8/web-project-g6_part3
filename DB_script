@@ -5,10 +5,8 @@ use web_project_g6;
 DROP TABLE IF EXISTS USERS;
 DROP TABLE IF EXISTS PRODUCTS;
 DROP TABLE IF EXISTS ORDERS;
-DROP TABLE IF EXISTS CART;
+DROP TABLE IF EXISTS CARTS;
 DROP TABLE IF EXISTS REVIEWS;
-DROP TABLE IF EXISTS SEARCHES;
-DROP TABLE IF EXISTS RETRIEVES;
 DROP TABLE IF EXISTS ProductsInCart;
 
 
@@ -36,7 +34,7 @@ CREATE TABLE PRODUCTS(
 );
 
 
-CREATE TABLE CART(
+CREATE TABLE CARTS(
     CartID MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
     CustomerEmail VARCHAR(100) NOT NULL,
     Price DECIMAL(15,1),
@@ -50,21 +48,20 @@ CREATE TABLE CART(
 CREATE TABLE ORDERS(
     OrderID MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
     CustomerEmail VARCHAR(100) NOT NULL,
-    OrderDate VARCHAR(20),
-    Address VARCHAR(100),
-    CartID MEDIUMINT,
+    OrderDate DATE,
+    CartID MEDIUMINT NOT NULL UNIQUE,
     PRIMARY KEY (orderID),
-    FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email, Address)
-    FOREIGN KEY (CartID) REFERENCES CART(CartID, TotalPrice)
+    FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email),
+    FOREIGN KEY (CartID) REFERENCES CARTS(CartID)
 );
 
 
 CREATE TABLE REVIEWS(
     ProductID MEDIUMINT NOT NULL,
     CustomerEmail VARCHAR(100) NOT NULL,
-    ReviewDT DATETIME,
+    ReviewDate DATE,
     Stars INT,
-    Content VARCHAR(20),
+    Content VARCHAR(250),
     PRIMARY KEY (ProductID, CustomerEmail),
     FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email),
     FOREIGN KEY (ProductID) REFERENCES PRODUCTS(ProductID),
@@ -99,3 +96,41 @@ INSERT INTO USERS(Email,Password,FullName,Phone,Address,Birthday,Country) VALUES
 ('shimi123@gmail.com','87654321','שמעון שלו','0507433245','החלל 9 נתניה','1992-12-17','ישראל');
 INSERT INTO USERS(Email,Password,FullName,Phone,Address,Birthday,Country) VALUES
 ('avi8@gmail.com','88888888','אבי שמונה','0508888888','קריית שלום 8 תל אביב','1988-08-08','ישראל');
+
+
+INSERT INTO CARTS(CustomerEmail,Price,ShippingCost,TotalPrice) VALUES
+('idan123@gmail.com',310,20,330);
+INSERT INTO CARTS(CustomerEmail,Price,ShippingCost,TotalPrice) VALUES
+('shimi123@gmail.com',105,15,120);
+INSERT INTO CARTS(CustomerEmail,Price,ShippingCost,TotalPrice) VALUES
+('avi8@gmail.com',175,10,185);
+
+
+INSERT INTO ORDERS(CustomerEmail,OrderDate,CartID) VALUES
+('avi8@gmail.com','2022-02-08',3);
+INSERT INTO ORDERS(CustomerEmail,OrderDate,CartID) VALUES
+('idan123@gmail.com','2022-02-10',2);
+
+
+INSERT INTO REVIEWS(ProductID,CustomerEmail,ReviewDate,Stars,Content) VALUES
+(1,'idan123@gmail.com','2022-02-12',5,'עוגה מעולה, מזכירה לי את התקופה בה חייתי בפריז בשנות ה-80');
+INSERT INTO REVIEWS(ProductID,CustomerEmail,ReviewDate,Stars,Content) VALUES
+(5,'idan123@gmail.com','2022-02-12',3,'היה חסר טעם של ויטמינציק פטל, מומלץ להוסיף לבלילה');
+INSERT INTO REVIEWS(ProductID,CustomerEmail,ReviewDate,Stars,Content) VALUES
+(5,'avi8@gmail.com','2022-02-13',4,'קינוח פטל נהדר, לבטח מהטובים שאכלתי בזמן האחרון');
+INSERT INTO REVIEWS(ProductID,CustomerEmail,ReviewDate,Stars,Content) VALUES
+(6,'avi8@gmail.com','2022-02-13',3,'פאי נפלא, הבעיה היחידה הייתה שהוא נשבר');
+
+
+INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
+('idan123@gmail.com',1,1,1);
+INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
+('idan123@gmail.com',1,5,2);
+INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
+('shimi123@gmail.com',2,8,3);
+INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
+('avi8@gmail.com',3,5,2);
+INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
+('avi8@gmail.com',3,6,2);
+INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
+('avi8@gmail.com',3,7,1);
