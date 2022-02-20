@@ -4,10 +4,11 @@ create schema web_project_g6;
 use web_project_g6;
 DROP TABLE IF EXISTS USERS;
 DROP TABLE IF EXISTS PRODUCTS;
-DROP TABLE IF EXISTS ORDERS;
 DROP TABLE IF EXISTS CARTS;
+DROP TABLE IF EXISTS ORDERS;
 DROP TABLE IF EXISTS REVIEWS;
 DROP TABLE IF EXISTS ProductsInCart;
+DROP TABLE IF EXISTS INQUIRIES;
 
 
 
@@ -37,6 +38,7 @@ CREATE TABLE PRODUCTS(
 CREATE TABLE CARTS(
     CartID MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
     CustomerEmail VARCHAR(100) NOT NULL,
+    CreationTime DATETIME,
     Price DECIMAL(15,1),
     ShippingCost DECIMAL(15,1),
     TotalPrice DECIMAL(15,1),
@@ -80,6 +82,15 @@ CREATE TABLE ProductsInCart(
     FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email)
 );
 
+CREATE TABLE INQUIRIES(
+    InquiryID MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
+    CustomerEmail VARCHAR(100) NOT NULL,
+    FullName VARCHAR(50),
+    InquiryDate DATE,
+    Content VARCHAR(250),
+    PRIMARY KEY (InquiryID)
+);
+
 
 INSERT INTO PRODUCTS(ProductName,ProductCategory,Price) VALUES ('סנט הונורה - עוגה צרפתית קלאסית',FALSE,240);
 INSERT INTO PRODUCTS(ProductName,ProductCategory,Price) VALUES ('עוגת תותים',FALSE,220);
@@ -98,12 +109,12 @@ INSERT INTO USERS(Email,Password,FullName,Phone,Address,Birthday,Country) VALUES
 ('avi8@gmail.com','88888888','אבי שמונה','0508888888','קריית שלום 8 תל אביב','1988-08-08','ישראל');
 
 
-INSERT INTO CARTS(CustomerEmail,Price,ShippingCost,TotalPrice) VALUES
-('idan123@gmail.com',310,20,330);
-INSERT INTO CARTS(CustomerEmail,Price,ShippingCost,TotalPrice) VALUES
-('shimi123@gmail.com',105,15,120);
-INSERT INTO CARTS(CustomerEmail,Price,ShippingCost,TotalPrice) VALUES
-('avi8@gmail.com',175,10,185);
+INSERT INTO CARTS(CustomerEmail,CreationTime,Price,ShippingCost,TotalPrice) VALUES
+('idan123@gmail.com','2022-02-10 15:10:10',310,20,330);
+INSERT INTO CARTS(CustomerEmail,CreationTime,Price,ShippingCost,TotalPrice) VALUES
+('shimi123@gmail.com','2022-02-11 19:22:35',105,15,120);
+INSERT INTO CARTS(CustomerEmail,CreationTime,Price,ShippingCost,TotalPrice) VALUES
+('avi8@gmail.com','2022-02-08 18:12:17',175,10,185);
 
 
 INSERT INTO ORDERS(CustomerEmail,OrderDate,CartID) VALUES
@@ -134,3 +145,7 @@ INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
 ('avi8@gmail.com',3,6,2);
 INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
 ('avi8@gmail.com',3,7,1);
+
+
+INSERT INTO INQUIRIES(CustomerEmail,FullName,InquiryDate,Content) VALUES ('idan123@gmail.com','עידן לוי','2022-02-15','המשלוח הגיע בדיוק בזמן שתואם, הקינוחים היו טריים ואיכותם הייתה נפלאה!');
+INSERT INTO INQUIRIES(CustomerEmail,FullName,InquiryDate,Content) VALUES ('avi8@gmail.com','אבי שמונה','2022-02-16','אשמח אם תהיה אפשרות לתאם משלוחים לשעה מוקדמת יותר בבוקר, למשל 08:00');

@@ -42,19 +42,10 @@ class DBproducts:
     #         else:
     #             return False
 
-    def get_products(self,price = False, cake = False,information = ''):
-        # if cake:
-        #     get_products = "SELECT * FROM web_project_g16.products where sale IS NOT NULL;"
-        # elif price == 'whole':
-        #     get_products = "SELECT * FROM web_project_g16.products;"
-        # elif price != False:
-        #     get_products = "SELECT * FROM web_project_g16.products where price_level = '%s';"% (price)
-        # elif color != False:
-        #     get_products = "SELECT * FROM web_project_g16.products where color = '%s';"% (color)
-        # else:
-        #     get_products = "SELECT * FROM web_project_g16.products;"
-        get_products = "SELECT * FROM web_project_g16.products where ProductID = '1' IS NOT NULL;"
-        answer = interact_db(query=get_products, query_type='fetch')
+    def get_price(self, product):
+
+        get_price = "SELECT Price FROM web_project_g6.products where WHERE ProductID='%s';" % product
+        answer = interact_db(query=get_price, query_type='fetch')
         return answer
 #
 #     def update_stock_admin(self,product_id,inStock):

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect, url_for
 
 # about blueprint definition
 contact_us = Blueprint('contact_us', __name__, static_folder='static', static_url_path='/contact_us', template_folder='templates')
@@ -7,4 +7,12 @@ contact_us = Blueprint('contact_us', __name__, static_folder='static', static_ur
 # Routes
 @contact_us.route('/contact_us', methods=['GET', 'POST'])
 def index():
-    return render_template('contact_us.html')
+    if request.method == 'POST':
+        return render_template('/contact_us.html', message='תודה! הטופס נשלח בהצלחה.')
+    else:
+        return render_template('/contact_us.html')
+
+
+# @contact_us.route('/contact_us_submitted', methods=['GET', 'POST'])
+# def contact_us_submitted():
+#     return render_template('/contact_us.html', message='תודה! הטופס נשלח בהצלחה.')

@@ -10,7 +10,7 @@
 {% block page_body_main_content %}
     <div id="MainCenter" class="Center">
 
-        <form action="action_page.php" style="border:none">
+        <form action="/submit_newsletter" method="post" style="border:none">
             <div class="info">
                 <h1 class="title1">הרשמה לניוזלטר</h1>
                 <label for="name" class="labels"><b>שם מלא</b></label><br><br>
@@ -25,6 +25,11 @@
             <br>
         </form>
     </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {{ message }}
+      {% endif %}
+    {% endwith %}
 {% endblock %}
     
 

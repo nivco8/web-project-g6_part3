@@ -23,7 +23,7 @@ class DBusers:
         if len(answer) == 0:
             return False
         else:
-            get_password = "SELECT Password FROM web_project_g16.users WHERE email='%s';" % email
+            get_password = "SELECT Password FROM web_project_g6.users WHERE email='%s';" % email
             answer = interact_db(query=get_password, query_type='fetchone')
             if answer[0] == password:
                 return True

@@ -3,41 +3,32 @@
 <link rel="stylesheet" href="{{ url_for('nav_footer.static', filename='css/nav_footer.css') }}"/>
 
 <!------- nav bar --------->
-<div class="navBar" id="navbar">
+<div id="navbar">
+    <a href="https://goo.gl/maps/Ror8JerRBGjeHwZ4A" class="btn">מיקום העסק</a>
+    <a href="https://waze.com/ul?il=32.08051,34.81238&navigate=yes" class="btn">ניווט לעסק</a>
+    <a href="termsNprivacy" class="btn">תנאי שימוש באתר</a>
+    <a href="contact_us" class="btn">צור קשר</a>
+    <a href="newsletter" class="btn">הרשמה לניוזלטר</a>
+    <a href="review" class="btn">כתוב ביקורת</a>
 
-    <div >
-        <a href=""> <img id="logo" src="{{ url_for('nav_footer.static', filename='media/logo.jpeg') }}" alt = "logo"></a>
-    </div>
 
     {%  if session.logged_in %}
-        <label class=enter > שלום {{ session.user_data['fullname'] }}  </label>
-{#            <label class=enter > Hello {{ session.name['name'] }}  </label>#}
-        <a href="/Signout">
-            <button id="signin"> התנתקות</button> <br> <br>
-        </a>
+        <label > שלום {{ session.user_data['fullname'] }}  </label>
+        {#            <label class=enter > Hello {{ session.name['name'] }}  </label>#}
+        <form method="GET" action="/logout">
+                    <input type="submit" name="Log Out" value="Log Out">
+        </form>
     {% else %}
-        <a id="signin" href="signin">כניסה</a>
-        <a id="signup" href="signup">הרשמה</a>
+        <a class="btn" href="signin">כניסה</a>
+        <a class="btn" href="signup">הרשמה</a>
     {% endif %}
 
 
-    <div class="links">
-        <a href="https://goo.gl/maps/Ror8JerRBGjeHwZ4A">מיקום העסק</a>
-        <br>
-        <a href="https://waze.com/ul?il=32.08051,34.81238&navigate=yes">ניווט לעסק</a>
-        <br>
-        <a href="termsNprivacy">תנאי שימוש באתר</a>
-        <br>
-        <a href="contact_us">צור קשר</a>
-        <br>
-        <a href="newsletter">הרשמה לניוזלטר</a>
-        <br>
-        <a href="review">כתוב ביקורת</a>
-    </div>
-
 </div>
 
-<script src="{{ url_for('nav_footer.static', filename='js/nav.js') }}"></script>
+  <a href=""> <img src="{{ url_for('nav_footer.static', filename='media/logo.jpeg') }}"  id="logo" alt = "logo"></a>
+
+<script src="{{ url_for('nav_footer.static', filename='js/nav.js') }}" id="logo"></script>
 
 
 

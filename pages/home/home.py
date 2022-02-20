@@ -5,6 +5,7 @@ home = Blueprint('home', __name__, static_folder='static', static_url_path='/hom
 
 
 # Routes
+@home.route('/home', methods=['GET', 'POST'])
 @home.route('/')
 def index():
     return render_template('Home.html')
