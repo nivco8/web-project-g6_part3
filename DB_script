@@ -61,10 +61,10 @@ CREATE TABLE ORDERS(
 CREATE TABLE REVIEWS(
     ProductID MEDIUMINT NOT NULL,
     CustomerEmail VARCHAR(100) NOT NULL,
-    ReviewDate DATE,
+    ReviewDateTime DATETIME not null,
     Stars INT,
     Content VARCHAR(250),
-    PRIMARY KEY (ProductID, CustomerEmail),
+    PRIMARY KEY (ProductID, CustomerEmail, ReviewDateTime),
     FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email),
     FOREIGN KEY (ProductID) REFERENCES PRODUCTS(ProductID),
     CONSTRAINT CK_Stars CHECK (Stars in (1,2,3,4,5))
@@ -123,13 +123,13 @@ INSERT INTO ORDERS(CustomerEmail,OrderDate,CartID) VALUES
 ('idan123@gmail.com','2022-02-10',2);
 
 
-INSERT INTO REVIEWS(ProductID,CustomerEmail,ReviewDate,Stars,Content) VALUES
+INSERT INTO REVIEWS(ProductID,CustomerEmail,ReviewDateTime,Stars,Content) VALUES
 (1,'idan123@gmail.com','2022-02-12',5,'עוגה מעולה, מזכירה לי את התקופה בה חייתי בפריז בשנות ה-80');
-INSERT INTO REVIEWS(ProductID,CustomerEmail,ReviewDate,Stars,Content) VALUES
+INSERT INTO REVIEWS(ProductID,CustomerEmail,ReviewDateTime,Stars,Content) VALUES
 (5,'idan123@gmail.com','2022-02-12',3,'היה חסר טעם של ויטמינציק פטל, מומלץ להוסיף לבלילה');
-INSERT INTO REVIEWS(ProductID,CustomerEmail,ReviewDate,Stars,Content) VALUES
+INSERT INTO REVIEWS(ProductID,CustomerEmail,ReviewDateTime,Stars,Content) VALUES
 (5,'avi8@gmail.com','2022-02-13',4,'קינוח פטל נהדר, לבטח מהטובים שאכלתי בזמן האחרון');
-INSERT INTO REVIEWS(ProductID,CustomerEmail,ReviewDate,Stars,Content) VALUES
+INSERT INTO REVIEWS(ProductID,CustomerEmail,ReviewDateTime,Stars,Content) VALUES
 (6,'avi8@gmail.com','2022-02-13',3,'פאי נפלא, הבעיה היחידה הייתה שהוא נשבר');
 
 

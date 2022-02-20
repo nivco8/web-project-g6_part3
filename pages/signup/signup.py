@@ -26,6 +26,7 @@ def insert_user():
     birthday = request.form['birthday']
     country = request.form['country']
     session['full_name'] = full_name
+    session['email'] = email
     session['login'] = True
     if DBusers.insert_User_DB(email, password, full_name, phone, address, birthday, country):
         # DBcarts.add_cart(email)

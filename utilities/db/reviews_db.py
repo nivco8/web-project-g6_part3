@@ -13,11 +13,11 @@ class DBreviews:
             flash('Please sign in/up to write a review!')
             return False
         else:
-            current_date = date.today()
-            query = "insert into web_project_g6.reviews (ProductID, CustomerEmail, ReviewDate, Stars, Content)\
-                                        values ('%s', '%s', '%s', '%s', '%s');" % (product, email, current_date, rank, content)
+            current_time = datetime.now()
+            query = "insert into web_project_g6.reviews (ProductID, CustomerEmail, ReviewDateTime, Stars, Content)\
+                                        values ('%s', '%s', '%s', '%s', '%s');" % (product, email, current_time, rank, content)
             interact_db(query=query, query_type='commit')
-            # message
+            flash('תודה נשמה')
             return True
 
 

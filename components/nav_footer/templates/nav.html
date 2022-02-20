@@ -9,10 +9,11 @@
     <a href="termsNprivacy" class="btn">תנאי שימוש באתר</a>
     <a href="contact_us" class="btn">צור קשר</a>
     <a href="newsletter" class="btn">הרשמה לניוזלטר</a>
-    <a href="review" class="btn">כתוב ביקורת</a>
 
     {% if session %}
+        <a href="review" class="btn">כתוב ביקורת</a>
         <label class="greeting">Hello {{ full_name }}</label>
+
 
         <form method="GET" action="/logout" style="display: inline">
                 <input class="btn" type="submit" name="Log Out" value="Log Out">

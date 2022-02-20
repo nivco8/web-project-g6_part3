@@ -9,45 +9,48 @@
 
 {% block page_body_main_content %}
     <div id="Container" class="grid-container">
-         <div  id="MainCenter" class="Center"  dir=rtl>
-            <form action="/add_review" method="post">
-                <h1 class = "header"> כתוב ביקורת </h1> <br>
+        {% if session %}
+            <div  id="MainCenter" class="Center"  dir=rtl>
+                    <form action="/add_review" method="post">
+                        <h1 class = "header"> כתוב ביקורת </h1> <br>
 
-                <label for="ContactEmail"> דוא"ל: </label>
-                <input type="email" placeholder="הזן כתובת דואר אלקטרוני" name="ContactEmail" id="ContactEmail" required><br> <br>
+                        <select name="product_selection" id="SelectProduct" class="product-input" required>
+                                <option value="time" selected disabled>בחר מוצר</option>
+                                <option value="1">סנט הונורה</option>
+                                <option value="2">עוגת תותים</option>
+                                <option value="3">פאי שוקולד מפנק</option>
+                                <option value="4">קראק פאי</option>
+                                <option value="5">פרוסת קראק פאי</option>
+                                <option value="6">פאי אוכמניות קטן</option>
+                                <option value="7">סנט הונורה קטן</option>
+                                <option value="8">קינוח פטל</option>
+                        </select>
 
-                <select name="product_selection" id="SelectProduct" class="product-input" required>
-                        <option value="time" selected disabled>בחר מוצר</option>
-                        <option value="1">סנט הונורה</option>
-                        <option value="2">עוגת תותים</option>
-                        <option value="3">פאי שוקולד מפנק</option>
-                        <option value="4">קראק פאי</option>
-                        <option value="5">פרוסת קראק פאי</option>
-                        <option value="6">פאי אוכמניות קטן</option>
-                        <option value="7">סנט הונורה קטן</option>
-                        <option value="8">קינוח פטל</option>
-                </select>
+                        <select name="rank_selection" id="SelectRank" class="rank-input" required>
+                                <option value="rank" selected disabled>דרג מוצר</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                        </select>
 
-                <select name="rank_selection" id="SelectRank" class="rank-input" required>
-                        <option value="rank" selected disabled>דרג מוצר</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                </select>
+                        <br>
+                        <label for="review_content"> תוכן ההודעה: </label> <br> <br>
+                        <textarea placeholder="כתוב בתיבה זו את ההודעה" name="contentMessage" id="content" cols="50" rows="15"></textarea> <br> <br>
 
-                <br>
-                <label for="review_content"> תוכן ההודעה: </label> <br> <br>
-                <textarea placeholder="כתוב בתיבה זו את ההודעה" name="contentMessage" id="content" cols="50" rows="15"></textarea> <br> <br>
+                        <input type="Submit" name="SubmittionButton" value="שלח פניה"> <br> <br>
+                    </form>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {{ message }}
+                        {% endif %}
+                    {% endwith %}
 
-                <input type="Submit" name="SubmittionButton" value="שלח פניה"> <br> <br>
-            </form>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {{ message }}
-                {% endif %}
-            {% endwith %}
+            {% else %}
+            <h1>THIS IS A PAGE FOR LOGGED IN USERS ONLY</h1>
+            {% endif %}
+
          </div>
     </div>
 {% endblock %}
