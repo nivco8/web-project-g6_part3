@@ -8,7 +8,7 @@ class DBusers:
         check_input = "SELECT email FROM web_project_g6.users WHERE email='%s';" % email
         answer = interact_db(query=check_input, query_type='fetch')
         if len(answer) == 0:
-            query = "insert into web_project_g6.users (Password, Email, FullName, Phone, Address, Country, Birthday)\
+            query = "insert into web_project_g6.users (Password, Email, full_name, Phone, Address, Country, Birthday)\
                             value ('%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (password, email, full_name, phone, address, country, birthday)
             interact_db(query=query, query_type='commit')
             # message
@@ -21,6 +21,7 @@ class DBusers:
         get_user_name = "select email from web_project_g6.users where email='%s';" % email
         answer = interact_db(query=get_user_name, query_type='fetch')
         if len(answer) == 0:
+            flash('No such user!')
             return False
         else:
             get_password = "SELECT Password FROM web_project_g6.users WHERE email='%s';" % email
@@ -28,6 +29,7 @@ class DBusers:
             if answer[0] == password:
                 return True
             else:
+                flash('Wrong password!')
                 return False
 
     def get_user_details(self, email):

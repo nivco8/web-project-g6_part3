@@ -11,16 +11,13 @@
 {% block page_body_main_content %}
     <div class="grid_container">
         <div class="Center">
-             <form action="/home" method="POST" >
+             <form action="/check_user" method="POST" >
                 <div class="info">
                     <h1 class="title1">התחברות</h1>
-
                     <label for="email" class="labels"><b>כתובת מייל</b></label><br>
                     <input type="email" placeholder="הכנס כתובת דואר אלקטרוני" id="email" name="email" required><br><br>
-
                     <label for="password" class="labels"><b>הזנ/י סיסמה</b></label><br>
                     <input type="password" placeholder="הקלד סיסמה" name="password" minlength="8" required><br><br><br>
-
                     <button class="button1" type="submit">התחבר</button>
                     <br><br>
                     <a href=/pages/signup/templates/signup.html> <br>
@@ -29,9 +26,12 @@
                     <br><br>
                 </div>
             </form>
-            {% if session.user_not_match %}
-                <a>שם משתמש/סיסמה שגויים. אנא נסה שנית.</a>
-            {% endif %}
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {{ message }}
+                {% endif %}
+            {% endwith %}
         </div>
     </div>
 {% endblock %}

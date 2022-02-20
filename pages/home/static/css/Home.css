@@ -10,13 +10,15 @@ body {
 
 .main{
     display: grid; 
-    grid-template-areas: 
+    grid-template-areas:
+    'message message'
     'topPic about'
     'cat cat'
     'cakes packs'
     ;
     height: auto; 
 }
+
 
 #top_pic{
     grid-area: topPic;
@@ -26,6 +28,10 @@ body {
 
 #cakes{
     grid-area: cakes;
+}
+
+#message{
+    grid-area: message;
 }
 
 #packs{

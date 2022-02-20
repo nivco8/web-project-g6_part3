@@ -6,9 +6,9 @@ from datetime import date
 class DBcontacts:
 
     def add_inquiry(self, email, name, content):
-
+        flash('we have got your request')
         current_date = date.today()
-        query = "insert into web_project_g6.inquiries (CustomerEmail, FullName, InquiryDate, Content)\
+        query = "insert into web_project_g6.inquiries (CustomerEmail, full_name, InquiryDate, Content)\
                                     values ('%s', '%s', '%s', '%s');" % (email, name, current_date, content)
         interact_db(query=query, query_type='commit')
 

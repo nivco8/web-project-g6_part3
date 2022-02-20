@@ -14,9 +14,9 @@ DROP TABLE IF EXISTS INQUIRIES;
 
 
 CREATE TABLE USERS(
-    Email VARCHAR(100) NOT NULL UNIQUE,
-    Password VARCHAR(50),
-    FullName VARCHAR(50),
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(50),
+    full_name VARCHAR(50),
     Phone VARCHAR(50),
     Address VARCHAR(100),
     Birthday DATE,
@@ -85,7 +85,7 @@ CREATE TABLE ProductsInCart(
 CREATE TABLE INQUIRIES(
     InquiryID MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
     CustomerEmail VARCHAR(100) NOT NULL,
-    FullName VARCHAR(50),
+    full_name VARCHAR(50),
     InquiryDate DATE,
     Content VARCHAR(250),
     PRIMARY KEY (InquiryID)
@@ -101,11 +101,11 @@ INSERT INTO PRODUCTS(ProductName,ProductCategory,Price) VALUES ('פרוסת קר
 INSERT INTO PRODUCTS(ProductName,ProductCategory,Price) VALUES ('פאי אוכמניות קטן',TRUE,35);
 INSERT INTO PRODUCTS(ProductName,ProductCategory,Price) VALUES ('סנט הונורה קטן',TRUE,35);
 
-INSERT INTO USERS(Email,Password,FullName,Phone,Address,Birthday,Country) VALUES
+INSERT INTO USERS(Email,Password,full_name,Phone,Address,Birthday,Country) VALUES
 ('idan123@gmail.com','12345678','עידן לוי','0507513245','המרד 7 הרצליה','1995-07-30','ישראל');
-INSERT INTO USERS(Email,Password,FullName,Phone,Address,Birthday,Country) VALUES
+INSERT INTO USERS(Email,Password,full_name,Phone,Address,Birthday,Country) VALUES
 ('shimi123@gmail.com','87654321','שמעון שלו','0507433245','החלל 9 נתניה','1992-12-17','ישראל');
-INSERT INTO USERS(Email,Password,FullName,Phone,Address,Birthday,Country) VALUES
+INSERT INTO USERS(Email,Password,full_name,Phone,Address,Birthday,Country) VALUES
 ('avi8@gmail.com','88888888','אבי שמונה','0508888888','קריית שלום 8 תל אביב','1988-08-08','ישראל');
 
 
@@ -147,5 +147,5 @@ INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
 ('avi8@gmail.com',3,7,1);
 
 
-INSERT INTO INQUIRIES(CustomerEmail,FullName,InquiryDate,Content) VALUES ('idan123@gmail.com','עידן לוי','2022-02-15','המשלוח הגיע בדיוק בזמן שתואם, הקינוחים היו טריים ואיכותם הייתה נפלאה!');
-INSERT INTO INQUIRIES(CustomerEmail,FullName,InquiryDate,Content) VALUES ('avi8@gmail.com','אבי שמונה','2022-02-16','אשמח אם תהיה אפשרות לתאם משלוחים לשעה מוקדמת יותר בבוקר, למשל 08:00');
+INSERT INTO INQUIRIES(CustomerEmail,full_name,InquiryDate,Content) VALUES ('idan123@gmail.com','עידן לוי','2022-02-15','המשלוח הגיע בדיוק בזמן שתואם, הקינוחים היו טריים ואיכותם הייתה נפלאה!');
+INSERT INTO INQUIRIES(CustomerEmail,full_name,InquiryDate,Content) VALUES ('avi8@gmail.com','אבי שמונה','2022-02-16','אשמח אם תהיה אפשרות לתאם משלוחים לשעה מוקדמת יותר בבוקר, למשל 08:00');

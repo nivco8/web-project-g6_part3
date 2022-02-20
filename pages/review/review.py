@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session
 from utilities.db.reviews_db import DBreviews
 
 
@@ -9,6 +9,9 @@ review = Blueprint('review', __name__, static_folder='static', static_url_path='
 @review.route('/pages/review/templates/review.html', methods=['GET', 'POST'])
 @review.route('/review', methods=['GET', 'POST'])
 def index():
+    if session.get('login'):
+        return render_template('review.html',
+                               full_name=session.get('full_name'))
     return render_template('/review.html')
 
 @review.route('/add_review', methods=['POST'])

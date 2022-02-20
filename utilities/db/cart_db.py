@@ -11,8 +11,8 @@ class DBcarts:
 
     def add_cart(self, email):
         current_dt = datetime.now()
-        query = "insert into web_project_g6.carts (CustomerEmail, CreationTime, Price, ShippingCost, TotalPrice)\
-                                    values ('%s', '%s', '%s', '%s', '%s');" % (email, current_dt, 0, 0, 0)
+        query = "insert into web_project_g6.cart (CustomerEmail, Price, ShippingCost, TotalPrice)\
+                                    values ('%s', '%s', '%s', '%s');" % (email, 0, 0, 0)
         interact_db(query=query, query_type='commit')
         return True
 

@@ -11,13 +11,13 @@
     <a href="newsletter" class="btn">הרשמה לניוזלטר</a>
     <a href="review" class="btn">כתוב ביקורת</a>
 
+    {% if session %}
+        <label class="greeting">Hello {{ full_name }}</label>
 
-    {%  if session.logged_in %}
-        <label > שלום {{ session.user_data['fullname'] }}  </label>
-        {#            <label class=enter > Hello {{ session.name['name'] }}  </label>#}
-        <form method="GET" action="/logout">
-                    <input type="submit" name="Log Out" value="Log Out">
+        <form method="GET" action="/logout" style="display: inline">
+                <input class="btn" type="submit" name="Log Out" value="Log Out">
         </form>
+
     {% else %}
         <a class="btn" href="signin">כניסה</a>
         <a class="btn" href="signup">הרשמה</a>

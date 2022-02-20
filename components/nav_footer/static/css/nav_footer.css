@@ -24,6 +24,18 @@ body {
     font-family: myBestFont;
 }
 
+.greeting{
+    color: whitesmoke;
+    background: #454545;
+    padding:7px 7px;
+    font-size:20px;
+    text-decoration:none;
+    text-align: center;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    font-family: myBestFont;
+}
+
 .btn:hover{
     border:none;
     background:rgba(0, 0, 0, 0.4);

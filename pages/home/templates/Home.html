@@ -10,6 +10,15 @@
 
 {% block page_body_main_content %}
     <div class="main">
+        <div ID="message">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {{ message }}
+            {% endif %}
+            {% endwith %}
+        <br>
+        </div>
+
 
         <div id="top_pic">
             <img src="{{ url_for('cakes.static', filename='media/chocolate.jpg') }}" width=100% height=100%>
