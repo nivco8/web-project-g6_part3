@@ -4,6 +4,7 @@ from datetime import datetime
 
 class DBcarts:
 
+
     def get_current_cart(self, CustomerEmail):
         query = "select CartID from web_project_g6.carts where CreationTime = (select max(CreationTime) from web_project_g6.carts where CustomerEmail='%s');" % CustomerEmail
         ans = interact_db(query=query, query_type='commit')

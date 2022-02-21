@@ -9,9 +9,9 @@ shopping_cart = Blueprint('shopping_cart', __name__, static_folder='static', sta
 # Routes
 @shopping_cart.route('/shopping_cart', methods=['GET', 'POST'])
 def index():
-
-    if session.get("email"):
-        carts = DBcarts.get_current_cart(session['email'])
+    if session.get('login'):
+        email = session['email']
+        carts = DBcarts.get_current_cart(email)
         return render_template('shopping_cart.html', carts)
     return render_template('home.html')
 
