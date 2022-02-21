@@ -5,8 +5,7 @@ from utilities.db.reviews_db import DBreviews
 # about blueprint definition
 review = Blueprint('review', __name__, static_folder='static', static_url_path='/review', template_folder='templates')
 
-# Routes
-# @review.route('/pages/review/templates/review.html', methods=['GET', 'POST'])
+
 @review.route('/review')
 def index():
     if session.get('login'):

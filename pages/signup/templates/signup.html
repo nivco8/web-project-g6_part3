@@ -13,21 +13,21 @@
 {% block page_body_main_content %}
     <div id="Container" class="grid-container">
         <div id="MainCenter" class="Center">
-            <form action="/insert_user" method="post" name="signup" onsubmit="return signup_validation()" style="border:none">
+            <form action="/insert_user" method="post" name="signup" onsubmit="return signup_validation()" >
                 <div class="info">
                     <h1 class="title1">הרשמה</h1>
-                    <label for="email" class="labels"><b>כתובת מייל</b></label><br>
+                    <label id="email" for="email" class="labels"><b>כתובת מייל</b></label><br>
                     <input type="text" placeholder="הכנס כתובת דואר אלקטרוני" name="email" required><br>
                     <label for="password" class="labels"><b>סיסמה</b></label><br>
-                    <input type="password" placeholder="הקלד סיסמה" name="password" minlength="8" required><br>
+                    <input id="password" type="password" placeholder="הקלד סיסמה" name="password" minlength="8" required><br>
                     <label for="psw_repeat" class="labels"><b>חזור על הסיסמה</b></label><br>
-                    <input type="password" placeholder="הקלד סיסמה בשנית" name="psw_repeat" minlength="8" required><br>
+                    <input id="psw_repeat" type="password" placeholder="הקלד סיסמה בשנית" name="psw_repeat" minlength="8" required><br>
                     <label for="full_name" class="labels"><b>שם מלא</b></label><br>
                     <input type="text" placeholder="הכנס שם מלא" name="full_name" required>  <br>
                     <label for="birthday" class="labels"><b>:תאריך לידה</b></label> <br>
                     <input type="date" id="birthday" name="birthday" required> <br>
                     <label for="address" class="labels"><b>:כתובת מלאה</b></label> <br>
-                    <input type="text" id="address" name="address" required> <br>
+                    <input id="address" type="text" id="address" name="address" required> <br>
                     <label for="country" class="labels"><b>:מדינה</b></label> <br>
                     <input type="text" id="country" name="country" required> <br>
                     <label for="phone" class="labels"><b>:הכנס מספר טלפון</b></label><br>
@@ -48,6 +48,6 @@
 {% endblock %}
 
 {% block page_body_js %}
-    <script src="{{ url_for('signup.static', filename='js/Signup.js') }}"></script>
+    <script src="{{ url_for('signup.static', filename='js/signup.js') }}"></script>
 {% endblock %}
 
