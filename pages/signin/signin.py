@@ -22,6 +22,6 @@ def insert_user():
         user_details = DBusers.get_user_details(email)
         session['full_name'] = user_details[0].full_name
         session['email'] = user_details[0].email
-        return redirect(url_for('Home.html'))
+        return redirect(url_for('home.index'))
     else:
         return render_template('SignIn.html', message='משתמש לא קיים! נא להזין אימייל אחר או להירשם')
