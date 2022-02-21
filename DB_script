@@ -11,8 +11,6 @@ DROP TABLE IF EXISTS ProductsInCart;
 DROP TABLE IF EXISTS INQUIRIES;
 
 
-
-
 CREATE TABLE USERS(
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(50),
@@ -21,7 +19,7 @@ CREATE TABLE USERS(
     Address VARCHAR(100),
     Birthday DATE,
     Country VARCHAR(100),
-    PRIMARY KEY (Email)
+    PRIMARY KEY (email)
     );
 
 
@@ -79,7 +77,7 @@ CREATE TABLE ProductsInCart(
     PRIMARY KEY (CustomerEmail, ProductID, CartID),
     FOREIGN KEY (ProductID) REFERENCES PRODUCTS(ProductID),
     FOREIGN KEY (CartID) REFERENCES CARTS(CartID),
-    FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email)
+    FOREIGN KEY (CustomerEmail) REFERENCES USERS(email)
 );
 
 CREATE TABLE INQUIRIES(
@@ -133,18 +131,36 @@ INSERT INTO REVIEWS(ProductID,CustomerEmail,ReviewDateTime,Stars,Content) VALUES
 (6,'avi8@gmail.com','2022-02-13',3,'פאי נפלא, הבעיה היחידה הייתה שהוא נשבר');
 
 
-INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
-('idan123@gmail.com',1,1,1);
-INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
-('idan123@gmail.com',1,5,2);
-INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
-('shimi123@gmail.com',2,8,3);
-INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
-('avi8@gmail.com',3,5,2);
-INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
-('avi8@gmail.com',3,6,2);
-INSERT INTO ProductsInCart(CustomerEmail,CartID,ProductID,Quantity) VALUES
-('avi8@gmail.com',3,7,1);
+INSERT INTO carts(CustomerEmail,CartID,ProductID,Quantity) VALUES
+(1,'tomer@gmail.com',1,1,1);
+INSERT INTO carts(CustomerEmail,CartID,ProductID,Quantity) VALUES
+(2,'2022-02-13','idan123@gmail.com',1,5,2);
+INSERT INTO carts(CustomerEmail,CartID,ProductID,Quantity) VALUES
+(3,'2022-02-13','shimi123@gmail.com',2,8,3);
+INSERT INTO carts(CustomerEmail,CartID,ProductID,Quantity) VALUES
+(4,'2022-02-13','avi8@gmail.com',3,5,2);
+INSERT INTO carts(CustomerEmail,CartID,ProductID,Quantity) VALUES
+(5,'2022-02-13','avi8@gmail.com',3,6,2);
+INSERT INTO carts(CustomerEmail,CartID,ProductID,Quantity) VALUES
+(6,'2022-02-13','avi8@gmail.com',3,7,1);
+
+
+
+INSERT INTO carts(CartID,CustomerEmail,CreationTime,price,ShippingCost,TotalPrice) VALUES
+(1,'tomer@gmail.com','2022-02-13',1,1,1);
+INSERT INTO carts(CartID,CustomerEmail,CreationTime,price,ShippingCost,TotalPrice) VALUES
+(2,'idan123@gmail.com','2022-02-13',1,5,2);
+INSERT INTO carts(CartID,CustomerEmail,CreationTime,price,ShippingCost,TotalPrice) VALUES
+(3,'shimi123@gmail.com','2022-02-13',2,8,3);
+INSERT INTO carts(CartID,CustomerEmail,CreationTime,price,ShippingCost,TotalPrice) VALUES
+(4,'avi8@gmail.com','2022-02-13',3,5,2);
+INSERT INTO carts(CartID,CustomerEmail,CreationTime,price,ShippingCost,TotalPrice) VALUES
+(5,'avi8@gmail.com','2022-02-13',3,6,2);
+INSERT INTO carts(CartID,CustomerEmail,CreationTime,price,ShippingCost,TotalPrice) VALUES
+(6,'avi8@gmail.com','2022-02-13',3,7,1);
+
+
+
 
 
 INSERT INTO INQUIRIES(CustomerEmail,full_name,InquiryDate,Content) VALUES ('idan123@gmail.com','עידן לוי','2022-02-15','המשלוח הגיע בדיוק בזמן שתואם, הקינוחים היו טריים ואיכותם הייתה נפלאה!');

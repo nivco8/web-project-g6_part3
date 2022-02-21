@@ -4,15 +4,15 @@ from datetime import datetime
 
 class DBcarts:
 
-    def get_current_cart(self, email):
-        query = "select CartID from web_project_g6.carts where CreationTime = (select max(CreationTime) from web_project_g6.carts where CustomerEmail='%s');" % email
+    def get_current_cart(self, CustomerEmail):
+        query = "select CartID from web_project_g6.carts where CreationTime = (select max(CreationTime) from web_project_g6.carts where CustomerEmail='%s');" % CustomerEmail
         ans = interact_db(query=query, query_type='commit')
         return ans
 
-    def add_cart(self, email):
+    def add_cart(self, CustomerEmail):
         current_dt = datetime.now()
         query = "insert into web_project_g6.cart (CustomerEmail, Price, ShippingCost, TotalPrice)\
-                                    values ('%s', '%s', '%s', '%s');" % (email, 0, 0, 0)
+                                    values ('%s', '%s', '%s', '%s');" % (CustomerEmail, 0, 0, 0)
         interact_db(query=query, query_type='commit')
         return True
 
