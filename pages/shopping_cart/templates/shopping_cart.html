@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% set page_head_title = 'CAKES' %}
+{% set page_head_title = 'Shopping Cart' %}
 
 {% block page_head_css %}
     <link rel="stylesheet" href="{{ url_for('shopping_cart.static', filename='css/shopping_cart.css') }}">
@@ -162,5 +162,5 @@
         
 
 {% block page_body_js %}
-    <script src="{{ url_for('shopping_cart.static', filename='css/shopping_cart.js') }}"></script>
+    <script src="{{ url_for('shopping_cart.static', filename='js/shopping_cart.js') }}"></script>
 {% endblock %}
