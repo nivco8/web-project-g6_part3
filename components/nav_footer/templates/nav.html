@@ -12,13 +12,13 @@
 
     {% if session %}
         <a href="review" class="btn">כתוב ביקורת</a>
-        <label class="greeting">Hello {{ full_name }}</label>
+        <a href="shopping_cart" class="btn">עגלת הקניות</a>
+
 
 
         <form method="GET" action="/logout" style="display: inline">
-                <input class="btn" type="submit" name="Log Out" value="Log Out">
+            <input class="btn" type="submit" name="Log Out" value="Log Out">
         </form>
-
     {% else %}
         <a class="btn" href="signin">כניסה</a>
         <a class="btn" href="signup">הרשמה</a>
@@ -26,8 +26,11 @@
 
 
 </div>
-
-  <a href=""> <img src="{{ url_for('nav_footer.static', filename='media/logo.jpeg') }}"  id="logo" alt = "logo"></a>
+{% if session %}
+    <br> <br>       <label class="greeting"> {{ full_name }}  ברוכ/ה שובך </label>
+{% endif %}
+<br>
+<a href=""> <img src="{{ url_for('nav_footer.static', filename='media/logo.jpg') }}"  id="logo" alt = "logo"></a>
 
 <script src="{{ url_for('nav_footer.static', filename='js/nav.js') }}" id="logo"></script>
 
