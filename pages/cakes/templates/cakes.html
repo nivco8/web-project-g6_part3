@@ -14,56 +14,56 @@
                 <div class="title">
                     <h1 for= "cake1">עוגות גדולות</h1>
                 </div>
-             <form action="/add_cake_to_cart" method="post" name="add_first_cake" onsubmit="return signup_validation()" style="border:none">
+             <form action="/add_strawberry" method="post" name="add_strawberry" onsubmit="return signup_validation()" style="border:none">
                 <div class="option1">
-                    <param id="first_option" value="tutim">
+                    <param id="strawberry" name="strawberry" value="סנט הונורה">
                     <h1 for= "option1">עוגת תותים</h1>
                     <h2 for= "option1">מחיר: 240 שח</h2>
                     <img id="option1" src="{{ url_for('cakes.static', filename='media/strawberries.jpg') }}" alt="strawberries">
                     <br>
-                    <input id= "quantity1" for= "add1" type ="number">
-                    <label for="quantity">כמות</label>
+                    <input name = "quantity1" id= "quantity1" for= "add1" type ="number">
+                    <label for="quantity1">כמות</label>
                 </div>
                 <input id="first_quantity" type="Submit" name="add_first_cake" value="הוסף לעגלה">
              </form>
 
-             <form action="/add_cake_to_cart" method="post" name="add_second_cake" onsubmit="return signup_validation()" style="border:none">
+             <form action="/add_saint" method="post" name="add_saint" onsubmit="return signup_validation()" style="border:none">
                 <div class="option2">
-                    <param id="second_option" value="petel">
+                    <param id="saint_honora" name="saint_honora" value="סנט הונורה">
                     <h1 for= "option2">סנט הונורה- עוגה צרפתית קלאסית</h1>
                     <h2 for= "option2">מחיר: 240 שח</h2>
                     <img id="option2" src="{{ url_for('cakes.static', filename='media/saint.jpg') }}" alt="saint honore">
                     <br>
                     <input name="quantity2" id= "quantity2" for= "add1" type ="number">
-                    <label for="quantity">כמות</label>
+                    <label for="quantity2">כמות</label>
                 </div>
                 <input id="second_quantity" type="Submit" name="add_second_cake" value="הוסף לעגלה">
             </form>
 
 
-             <form action="/add_cake_to_cart" method="post" name="add_third_cake" onsubmit="return signup_validation()" style="border:none">
+             <form action="/add_crack_pie" method="post" name="add_crack_pie" onsubmit="return signup_validation()" style="border:none">
                 <div class="option3">
-                    <param id="third_option" value="crack pie">
+                    <param id="crack_pie" name="crack_pie" value="סנט הונורה">
                     <h1 for= "option3">קראק פאי</h1>
                     <h2 for= "option3">מחיר: 240 שח</h2>
                     <img id="option3" src="{{ url_for('cakes.static', filename='media/crack_pai.jpg') }}" alt="crack_pai">
                     <br>
                     <input name="quantity3" id= "quantity3" for= "add1" type ="number">
-                    <label for="quantity">כמות</label>
+                    <label for="quantity3">כמות</label>
                 </div>
                 <input id="third_quantity" type="Submit" name="add_third_cake" value="הוסף לעגלה">
             </form>
 
 
-             <form action="/add_cake_to_cart" method="post" name="add_fourth_cake" onsubmit="return signup_validation()" style="border:none">
+             <form action="/add_pie_chocolate" method="post" name="pie_chocolate" onsubmit="return signup_validation()" style="border:none">
                 <div class="option4">
-                    <param id="fourth_option" value="chocolate pie">
+                    <param id="saint_honora" name="saint_honora" value="סנט הונורה">
                     <h1 for= "option4">פאי שוקולד מפנק</h1>
                     <h2 for= "option4">מחיר: 240 שח</h2>
                     <img id="option4" src="{{ url_for('cakes.static', filename='media/chocolate.png') }}" alt="chocolate">
                     <br>
                     <input name="quantity4" id="quantity4" for= "add1" type ="number">
-                    <label for="quantity">כמות</label>
+                    <label for="quantity4">כמות</label>
                 </div>
                 <input id="fourth_quantity" type="Submit" name="add_fourth_cake" value="הוסף לעגלה">
             </form>

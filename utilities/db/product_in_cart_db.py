@@ -6,17 +6,23 @@ from datetime import date
 class DBProduct_in_cart:
 
     def add_product_to_cart(self, email, cartID, product, quantity):
-        check_input = "SELECT quantity FROM web_project_g6.productsincart WHERE email='%s' and cartID='%s' and product='%s';" % email, cartID, product
+        check_input = "SELECT quantity FROM web_project_g6.productsincart WHERE CustomerEmail='%s' and CartID='%s' and ProductID='%s';" % (email, cartID, product)
         answer = interact_db(query=check_input, query_type='fetch')
-        if len(answer) == 0:
+        count = 0
+        for prod in answer:
+            if prod.quantity:
+                count = prod.quantity
+        if count == 0:
             query = "insert into web_project_g6.productsincart (CustomerEmail, CartID, ProductID, Quantity)\
                                                     value ('%s', '%s', '%s', '%s');" % (email, cartID, product, quantity)
             interact_db(query=query, query_type='commit')
+            flash('added successfully!')
             return True
         else:
-            new_quantity = answer + quantity
-            query = "UPDATE web_project_g6.productsincart set Quantity='%s' WHERE cartID='%s' and productID='%s';" % (new_quantity, cartID, product)
+            new_quantity = count + quantity
+            query = "UPDATE web_project_g6.productsincart set Quantity='%s' WHERE CartID='%s' and ProductID='%s';" % (new_quantity, cartID, product)
             interact_db(query=query, query_type='commit')
+            flash('updated successfully!')
             return False
 
 

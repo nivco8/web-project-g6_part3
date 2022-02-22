@@ -20,10 +20,10 @@ def index():
 def add_mini_crack():
     if session.get('login'):
         email = session['email']
-        quantity = 16
-
+        quantity = int(request.form['quantity1'])
+        cartID = DBcarts.get_current_cart(email)
         product = 6
-        DBProduct_in_cart.add_product_to_cart(email, 2, product, quantity)
+        DBProduct_in_cart.add_product_to_cart(email, cartID, product, quantity)
         return render_template('packs.html', message='פריט נוסף לעגלה!')
     else:
         return render_template('packs.html', message='לא ניתן להוסיף לעגלה, נא להתחבר למערכת בבקשה תודה')
@@ -33,7 +33,7 @@ def add_mini_crack():
 def add_mini_petel():
     if session.get('login'):
         email = session['email']
-        quantity = request.form['quantity2']
+        quantity = int(request.form['quantity2'])
         cartID = DBcarts.get_current_cart(email)
         product = 5
         DBProduct_in_cart.add_product_to_cart(email, cartID, product, quantity)
@@ -46,7 +46,7 @@ def add_mini_petel():
 def add_mini_saint():
     if session.get('login'):
         email = session['email']
-        quantity = request.form['quantity3']
+        quantity = int(request.form['quantity3'])
         cartID = DBcarts.get_current_cart(email)
         product = 8
         DBProduct_in_cart.add_product_to_cart(email, cartID, product, quantity)
@@ -59,7 +59,7 @@ def add_mini_saint():
 def add_mini_blueberries():
     if session.get('login'):
         email = session['email']
-        quantity = request.form['quantity1']
+        quantity = int(request.form['quantity4'])
         cartID = DBcarts.get_current_cart(email)
         product = 7
         DBProduct_in_cart.add_product_to_cart(email, cartID, product, quantity)

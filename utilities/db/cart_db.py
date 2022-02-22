@@ -8,7 +8,11 @@ class DBcarts:
     def get_current_cart(self, CustomerEmail):
         query = "select CartID from web_project_g6.carts where CreationTime = (select max(CreationTime) from web_project_g6.carts where CustomerEmail='%s');" % CustomerEmail
         ans = interact_db(query=query, query_type='fetch')
-        return ans
+        CartID = 0
+        for cart in ans:
+            if cart.CartID:
+                CartID = cart.CartID
+        return CartID
 
     def add_cart(self, CustomerEmail):
         current_dt = datetime.now()
