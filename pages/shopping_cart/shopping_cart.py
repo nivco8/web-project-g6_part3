@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, session, DBcarts
+from flask import Blueprint, render_template, session
+from utilities.db.cart_db import DBcarts
+
 # about blueprint definition
 shopping_cart = Blueprint('shopping_cart', __name__, static_folder='static', static_url_path='/shopping_cart', template_folder='templates')
 
