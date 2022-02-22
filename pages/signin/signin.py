@@ -24,4 +24,5 @@ def insert_user():
         session['email'] = user_details[0].email
         return redirect(url_for('home.index'))
     else:
+        session.clear()
         return render_template('SignIn.html', message='משתמש לא קיים! נא להזין אימייל אחר או להירשם')
