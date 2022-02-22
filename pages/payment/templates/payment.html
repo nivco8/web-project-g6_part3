@@ -42,10 +42,10 @@
             </div>
         </div>
 
-        <form action="">
+        <form action="/after_payment" method="post" onsubmit="return valid_payment()">
             <div class="inputBox">
                 <span>מספר הכרטיס (16 ספרות)</span>
-                <input type="text" maxlength=16 class="card-number-input" placeholder="הזן את מספר כרטיס האשראי (16 ספרות)" pattern="[0-9]{16}" required>
+                <input id="number" type="text" maxlength=16 class="card-number-input" placeholder="הזן את מספר כרטיס האשראי (16 ספרות)" pattern="[0-9]{16}" required>
             </div>
             <div class="inputBox">
                 <span>שם מלא של בעל הכרטיס</span>
@@ -90,8 +90,7 @@
                     <input type="text" minlength="3" maxlength="4" class="cvv-input">
                 </div>
             </div>
-                <a href=after_payment> <button class="button1" type="button">בצע תשלום</button></a>
-{#            <input name="submit" type="submit" value="בצע תשלום" class="submit-btn">#}
+              <input name="submit" type="submit" value="בצע תשלום" class="submit-btn">
         </form>
     </div>
 
@@ -129,6 +128,10 @@ document.querySelector('.cvv-input').oninput = () =>{
 }
 
 </script>
+
+
+<script src="{{ url_for('payment.static', filename='js/payment.js') }}"></script>
+
 
 
 </body>

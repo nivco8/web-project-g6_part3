@@ -21,4 +21,8 @@ def submit_newsletter():
     phone = request.form['phone']
     full_name = request.form['full_name']
     DBsubscribers.insert_subscriber_DB(email, full_name, phone)
-    return render_template('home.html', message='תודה! הטופס נשלח בהצלחה.')
+    if session.get('login'):
+        return render_template('Home.html',
+                               full_name=session.get('full_name'),
+                               message='תודה! נרשמת כמנוי.')
+    return render_template('home.html', message='תודה! נרשמת כמנוי.')

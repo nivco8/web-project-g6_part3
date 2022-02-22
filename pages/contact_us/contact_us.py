@@ -21,10 +21,9 @@ def contact_us_form():
     name = request.form['Name']
     content = request.form['contentMessage']
     DBcontacts.add_inquiry(email, name, content)
+    if session.get('login'):
+        return render_template('Home.html',
+                               full_name=session.get('full_name'),
+                               message='תודה! הטופס נשלח בהצלחה.')
     return render_template('home.html', message='תודה! הטופס נשלח בהצלחה.')
-    # return render_template('contact_us.html', message='תודה! הטופס נשלח בהצלחה.')
 
-
-# @contact_us.route('/contact_us_submitted', methods=['GET', 'POST'])
-# def contact_us_submitted():
-#     return render_template('/contact_us.html', message='תודה! הטופס נשלח בהצלחה.')

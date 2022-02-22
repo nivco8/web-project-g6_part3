@@ -24,4 +24,3 @@ def after_payment():
         return render_template('home.html', message="התשלום בוצע בהצלחה! תודה.", full_name=session.get('full_name'))
     return render_template('home.html')
 
-

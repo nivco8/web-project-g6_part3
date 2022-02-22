@@ -18,3 +18,4 @@ def index():
 def logout_func():
     session.clear()
     return render_template('Home.html')
+

@@ -19,7 +19,9 @@ def add_review():
     product_to_review = request.form['product_selection']
     rank = request.form['rank_selection']
     content = request.form['contentMessage']
-    if DBreviews.insert_review(email, product_to_review, rank, content):
-        return render_template('home.html', message='תודה! הביקורת נשלחה בהצלחה.')
-    else:
-        return render_template('/review.html', message='FAILED ATTEMPT')
+    DBreviews.insert_review(email, product_to_review, rank, content)
+    if session.get('login'):
+        return render_template('Home.html',
+                               full_name=session.get('full_name'),
+                               message='תודה! הביקורת נשלחה בהצלחה.')
+    return render_template('home.html', message='תודה! הביקורת נשלחה בהצלחה.')
