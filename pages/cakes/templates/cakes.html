@@ -9,28 +9,71 @@
 {% block page_body_main_content %}
      <main id="Main" class="login_center">
          <div class="cakes">
-                <div>
-                    <h1 for= "cake1">עוגת תותים</h1>
-                    <h2 for= "cake1">מחיר: 220 שח</h2>
-                    <img id="cake1" src="{{ url_for('cakes.static', filename='media/strawberries.jpg') }}" alt="strawberries">
+
+
+                <div class="title">
+                    <h1 for= "cake1">עוגות גדולות</h1>
                 </div>
-                <div>
-                    <h1 for= "cake2">סנט הונורה</h1>
-                    <h2 for= "cake2">עוגה צרפתית קלאסית</h2>
-                    <h2 for= "cake2">מחיר: 240 שח</h2>
-                    <img id="cake2" src="{{ url_for('cakes.static', filename='media/saint.jpg') }}" alt="saint honore">
+             <form action="/add_cake_to_cart" method="post" name="add_first_cake" onsubmit="return signup_validation()" style="border:none">
+                <div class="option1">
+                    <param id="first_option" value="tutim">
+                    <h1 for= "option1">עוגת תותים</h1>
+                    <h2 for= "option1">מחיר: 240 שח</h2>
+                    <img id="option1" src="{{ url_for('cakes.static', filename='media/strawberries.jpg') }}" alt="strawberries">
+                    <br>
+                    <input id= "quantity1" for= "add1" type ="number">
+                    <label for="quantity">כמות</label>
                 </div>
-                <div>
-                    <h1 for= "cake3">קראק פאי</h1>
-                    <h2 for= "cake3">מחיר: 240 שח</h2>
-                    <img id="cake3" src="{{ url_for('cakes.static', filename='media/crack_pai.jpg') }}" alt="crack_pai">
+                <input id="first_quantity" type="Submit" name="add_first_cake" value="הוסף לעגלה">
+             </form>
+
+             <form action="/add_cake_to_cart" method="post" name="add_second_cake" onsubmit="return signup_validation()" style="border:none">
+                <div class="option2">
+                    <param id="second_option" value="petel">
+                    <h1 for= "option2">סנט הונורה- עוגה צרפתית קלאסית</h1>
+                    <h2 for= "option2">מחיר: 240 שח</h2>
+                    <img id="option2" src="{{ url_for('cakes.static', filename='media/saint.jpg') }}" alt="saint honore">
+                    <br>
+                    <input name="quantity2" id= "quantity2" for= "add1" type ="number">
+                    <label for="quantity">כמות</label>
                 </div>
-                <div>
-                    <h1 for= "cake4">פאי שוקולד מפנק</h1>
-                    <h2 for= "cake4">מחיר: 240 שח</h2>
-                    <img id="cake4" src="{{ url_for('cakes.static', filename='media/chocolate.png') }}" alt="chocolate">
+                <input id="second_quantity" type="Submit" name="add_second_cake" value="הוסף לעגלה">
+            </form>
+
+
+             <form action="/add_cake_to_cart" method="post" name="add_third_cake" onsubmit="return signup_validation()" style="border:none">
+                <div class="option3">
+                    <param id="third_option" value="crack pie">
+                    <h1 for= "option3">קראק פאי</h1>
+                    <h2 for= "option3">מחיר: 240 שח</h2>
+                    <img id="option3" src="{{ url_for('cakes.static', filename='media/crack_pai.jpg') }}" alt="crack_pai">
+                    <br>
+                    <input name="quantity3" id= "quantity3" for= "add1" type ="number">
+                    <label for="quantity">כמות</label>
                 </div>
-            </div>
-      </main>
+                <input id="third_quantity" type="Submit" name="add_third_cake" value="הוסף לעגלה">
+            </form>
+
+
+             <form action="/add_cake_to_cart" method="post" name="add_fourth_cake" onsubmit="return signup_validation()" style="border:none">
+                <div class="option4">
+                    <param id="fourth_option" value="chocolate pie">
+                    <h1 for= "option4">פאי שוקולד מפנק</h1>
+                    <h2 for= "option4">מחיר: 240 שח</h2>
+                    <img id="option4" src="{{ url_for('cakes.static', filename='media/chocolate.png') }}" alt="chocolate">
+                    <br>
+                    <input name="quantity4" id="quantity4" for= "add1" type ="number">
+                    <label for="quantity">כמות</label>
+                </div>
+                <input id="fourth_quantity" type="Submit" name="add_fourth_cake" value="הוסף לעגלה">
+            </form>
+
+         </div>
+     </main>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {{ message }}
+        {% endif %}
+    {% endwith %}
 {% endblock %}
 

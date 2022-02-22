@@ -11,32 +11,38 @@ body {
 .cakes{
     display: grid;
     grid-template-areas:
-    'cake1 cake2'
-    'cake3 cake4'
+    'title title'
+    'option1 option2'
+    'option3 option4'
     ;
     height: auto;
 }
 
-#cake1{
-    grid-area: cake1;
+#option1{
+    grid-area: option1;
     width: 50%;
     height: auto;
 }
 
-#cake2{
-    grid-area: cake2;
+#option2{
+    grid-area: option2;
     width: 50%;
     height: auto;
 }
 
-#cake3{
-    grid-area: cake3;
+#option3{
+    grid-area: option3;
     width: 50%;
     height: auto;
 }
 
-#cake4{
-    grid-area: cake4;
+#option4{
+    grid-area: option4;
     width: 50%;
     height: auto;
+}
+
+.title{
+    grid-area: title;
+
 }

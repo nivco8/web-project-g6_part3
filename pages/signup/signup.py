@@ -29,7 +29,8 @@ def insert_user():
     session['email'] = email
     session['login'] = True
     if DBusers.insert_User_DB(email, password, full_name, phone, address, birthday, country):
-        # DBcarts.add_cart(email)
-        return redirect(url_for('home.index'))
+        DBcarts.add_cart(email)
+        return render_template('home.html',
+                               full_name=session.get('full_name'))
     else:
         return render_template('/SignUp.html', message='משתמש קיים! נא להזין אימייל אחר או להתחבר')
