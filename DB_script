@@ -28,7 +28,7 @@ CREATE TABLE PRODUCTS(
     ProductID MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
     ProductName VARCHAR(200),
     ProductCategory BOOLEAN,
-    Price DECIMAL(15,1),
+    Price INT,
     PRIMARY KEY (ProductID)
 );
 
@@ -37,9 +37,9 @@ CREATE TABLE CARTS(
     CartID MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
     CustomerEmail VARCHAR(100) NOT NULL,
     CreationTime DATETIME,
-    Price DECIMAL(15,1),
-    ShippingCost DECIMAL(15,1),
-    TotalPrice DECIMAL(15,1),
+    Price INT,
+    ShippingCost INT,
+    TotalPrice INT,
     PRIMARY KEY (CartID),
     FOREIGN KEY (CustomerEmail) REFERENCES USERS(Email)
 );
@@ -110,9 +110,9 @@ INSERT INTO USERS(Email,Password,full_name,Phone,Address,Birthday,Country) VALUE
 INSERT INTO CARTS(CustomerEmail,CreationTime,Price,ShippingCost,TotalPrice) VALUES
 ('idan123@gmail.com','2022-02-10 15:10:10',310,20,330);
 INSERT INTO CARTS(CustomerEmail,CreationTime,Price,ShippingCost,TotalPrice) VALUES
-('shimi123@gmail.com','2022-02-11 19:22:35',105,15,120);
+('shimi123@gmail.com','2022-02-11 19:22:35',105,20,125);
 INSERT INTO CARTS(CustomerEmail,CreationTime,Price,ShippingCost,TotalPrice) VALUES
-('avi8@gmail.com','2022-02-08 18:12:17',175,10,185);
+('avi8@gmail.com','2022-02-08 18:12:17',175,20,195);
 
 
 INSERT INTO ORDERS(CustomerEmail,OrderDate,CartID) VALUES

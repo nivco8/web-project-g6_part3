@@ -36,6 +36,39 @@ class DBProduct_in_cart:
         ans = interact_db(query=query, query_type='fetch')
         return ans
 
+    def update_products_cost(self, cartID):
+        all_cart_products = self.get_product_in_cart(cartID)
+        total_price = 0
+        for product in all_cart_products:
+            total_price += product.Quantity * product.Price
+        query = "UPDATE web_project_g6.carts set Price='%s' WHERE CartID='%s';" % (total_price,cartID)
+        interact_db(query=query, query_type='commit')
+        return total_price
+
+    def update_shipping_cost(self, cartID, cost):
+        query = "UPDATE web_project_g6.carts set ShippingCost='%s' WHERE CartID='%s';" % (cost,cartID)
+        interact_db(query=query, query_type='commit')
+        self.update_total_cost(cartID)
+        return True
+
+    def get_shipping_cost(self, cartID):
+        query = "SELECT ShippingCost FROM web_project_g6.carts  WHERE CartID='%s';" % (cartID)
+        ans = interact_db(query=query, query_type='fetch')
+        cost = 0
+        for prod in ans:
+            if prod.ShippingCost:
+                cost = prod.ShippingCost
+        return cost
+
+    def update_total_cost(self, cartID):
+        total_products_price = int(self.update_products_cost(cartID))
+        shipping_cost = self.get_shipping_cost(cartID)
+        total_cost = total_products_price + shipping_cost
+        query = "UPDATE web_project_g6.carts set TotalPrice='%s' WHERE CartID='%s';" % (total_cost,cartID)
+        interact_db(query=query, query_type='commit')
+        return True
+
+
 
     def delete_product_from_cart(self, cartID, product):
         query = "delete from web_project_g6.productsincart where CartID = '%s' and ProductID='%s';" % (cartID, product)

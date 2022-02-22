@@ -16,7 +16,7 @@ def index():
         price_sum = 0
         for product in products:
             price_sum += product.Quantity * product.Price
-        return render_template('shopping_cart.html', products = products, price_sum = price_sum,  full_name=session.get('full_name'))
+        return render_template('shopping_cart.html', products=products, price_sum=price_sum, full_name=session.get('full_name'))
     return render_template('home.html')
 
 
@@ -26,6 +26,7 @@ def clear_cart():
         email = session['email']
         cartID = DBcarts.get_current_cart(email)
         DBProduct_in_cart.clear_cart(cartID)
+        DBProduct_in_cart.update_total_cost(cartID)
         flash('succeeded')
         return render_template('shopping_cart.html', message='העגלה רוקנה ומרוקנת!', full_name=session.get('full_name'))
     else:
@@ -39,6 +40,7 @@ def delete_product():
         cartID = DBcarts.get_current_cart(email)
         productID = int(request.form['productID'])
         DBProduct_in_cart.delete_product_from_cart(cartID, productID)
+        DBProduct_in_cart.update_total_cost(cartID)
         flash('succeeded')
         return redirect(url_for('shopping_cart.index', message='מוצר נמחק!', full_name=session.get('full_name')))
     else:
@@ -46,18 +48,36 @@ def delete_product():
         return render_template('shopping_cart.html', message='לא ניתן למחוק מהעגלה, נא להתחבר למערכת בבקשה תודה')
 
 
-@shopping_cart.route('/delivery', methods=['GET', 'POST'])
-def delivery():
-    if session.get('login'):
-        email = session['email']
-        cartID = DBcarts.get_current_cart(email)
-        price = int(request.form['price'])
-        flash('succeeded')
-        session['price'] = price
-        return redirect(url_for('delivery.index'))
-    else:
-        flash('Failed')
-        return render_template('home.html')
+@shopping_cart.route('/send_to_delivery', methods=['GET', 'POST'])
+def send_to_delivery():
+    email = session['email']
+    cartID = DBcarts.get_current_cart(email)
+    DBProduct_in_cart.update_shipping_cost(cartID, 20)
+    DBProduct_in_cart.update_total_cost(cartID)
+    return redirect(url_for('delivery.index'))
+
+@shopping_cart.route('/send_to_pickup', methods=['GET', 'POST'])
+def send_to_pickup():
+    email = session['email']
+    cartID = DBcarts.get_current_cart(email)
+    DBProduct_in_cart.update_shipping_cost(cartID, 0)
+    DBProduct_in_cart.update_total_cost(cartID)
+    return redirect(url_for('pickup.index'))
+
+
+
+    # if session.get('login'):
+    #     email = session['email']
+    #     flash('succeeded')
+    #     cartID = DBcarts.get_current_cart(email)
+    #     products = DBProduct_in_cart.get_product_in_cart(cartID)
+    #     price_sum = 0
+    #     for product in products:
+    #         price_sum += product.Quantity * product.Price
+    #     return render_template('delivery.html', price_sum=price_sum)
+    # else:
+    #     flash('Failed')
+    #     return render_template('home.html')
 
 
 

@@ -17,7 +17,7 @@
             {% endwith %}
     </div>
 
-    היי אדון
+    היי גברתי
     כיף לראות אותך עימנו
 
     העגלה שלך מכילה:
@@ -47,9 +47,14 @@
     </form>
 
 
-    <form action="/delivery" method="post" style="display: inline">
+    <form action="/send_to_delivery" method="post" style="display: inline">
                 <input type="hidden" name="price" VALUE="{{ price_sum }}" >
                 <input type="submit" VALUE="משלוח" >
+    </form>
+
+    <form action="/send_to_pickup" method="post" style="display: inline">
+                <input type="hidden" name="price" VALUE="{{ price_sum }}" >
+                <input type="submit" VALUE="איסוף עצמי" >
     </form>
 
 
