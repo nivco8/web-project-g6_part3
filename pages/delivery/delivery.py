@@ -7,7 +7,9 @@ delivery = Blueprint('delivery', __name__, static_folder='static', static_url_pa
 # Routes
 @delivery.route('/delivery', methods=['GET', 'POST'])
 def index():
+
     if session.get('login'):
         return render_template('delivery.html',
+                               price = session.get('price'),
                                full_name=session.get('full_name'))
     return render_template('delivery.html')

@@ -23,12 +23,39 @@
     העגלה שלך מכילה:
 
     {% if products %}
-        {{ products[0].ProductName }}
+        <h2>רשימת מוצרים</h2>
+        <ul>
+        {% for product in products %}
+            <li><form action="/delete_product" method="post" style="display: inline">
+                <input type="hidden" name="productID" VALUE="{{ product.ProductID }}" >
+                <input type="submit" VALUE="מחק" >
+            </form>
+             שם המוצר {{ product.ProductName }}, כמות: {{ product.Quantity }}    מחיר: {{ product.Quantity * product.Price }} </li>
+        {% endfor %}
+        </ul>
     {% endif %}
+
+    <br>
+    <br>
+    סך הכל מחיר= {{ price_sum }}
+    <br>
+
+
 
     <form action="/clear_cart" method="post" name="clear_cart" style="border:none">
             <input id="fourth_small_quantity" type="Submit" name="clear_cart" value="ריקון העגלה">
     </form>
+
+
+    <form action="/delivery" method="post" style="display: inline">
+                <input type="hidden" name="price" VALUE="{{ price_sum }}" >
+                <input type="submit" VALUE="משלוח" >
+    </form>
+
+
+
+
+
 
 
 {% endblock %}
