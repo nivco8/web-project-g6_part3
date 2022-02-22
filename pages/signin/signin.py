@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, request, url_for, redirect
+from flask import Blueprint, render_template, session, request, url_for, redirect, flash
 from utilities.db.users_db import DBusers
 from utilities.db.cart_db import DBcarts
 
@@ -28,4 +28,5 @@ def insert_user():
         return redirect(url_for('home.index'))
     else:
         session.clear()
+        flash('signin')
         return render_template('SignIn.html', message='משתמש לא קיים! נא להזין אימייל אחר או להירשם')

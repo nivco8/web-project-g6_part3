@@ -22,8 +22,9 @@ def add_strawberry():
         cartID = DBcarts.get_current_cart(email)
         product = 2
         DBProduct_in_cart.add_product_to_cart(email, cartID, product, quantity)
-        return render_template('cakes.html', message='פריט נוסף לעגלה!')
+        return render_template('cakes.html', message='פריט נוסף לעגלה!', full_name=session.get('full_name'))
     else:
+        flash('Failed')
         return render_template('cakes.html', message='לא ניתן להוסיף לעגלה, נא להתחבר למערכת בבקשה תודה')
 
 
@@ -35,8 +36,9 @@ def add_saint():
         cartID = DBcarts.get_current_cart(email)
         product = 1
         DBProduct_in_cart.add_product_to_cart(email, cartID, product, quantity)
-        return render_template('cakes.html', message='פריט נוסף לעגלה!')
+        return render_template('cakes.html', message='פריט נוסף לעגלה!', full_name=session.get('full_name'))
     else:
+        flash('Failed')
         return render_template('cakes.html', message='לא ניתן להוסיף לעגלה, נא להתחבר למערכת בבקשה תודה')
 
 
@@ -48,8 +50,9 @@ def add_crack_pie():
         cartID = DBcarts.get_current_cart(email)
         product = 4
         DBProduct_in_cart.add_product_to_cart(email, cartID, product, quantity)
-        return render_template('cakes.html', message='פריט נוסף לעגלה!')
+        return render_template('cakes.html', message='פריט נוסף לעגלה!', full_name=session.get('full_name'))
     else:
+        flash('Failed')
         return render_template('cakes.html', message='לא ניתן להוסיף לעגלה, נא להתחבר למערכת בבקשה תודה')
 
 
@@ -61,7 +64,8 @@ def add_pie_chocolate():
         cartID = DBcarts.get_current_cart(email)
         product = 3
         DBProduct_in_cart.add_product_to_cart(email, cartID, product, quantity)
-        return render_template('cakes.html', message='פריט נוסף לעגלה!')
+        return render_template('cakes.html', message='פריט נוסף לעגלה!' , full_name=session.get('full_name'))
     else:
+        flash('Failed')
         return render_template('cakes.html', message='לא ניתן להוסיף לעגלה, נא להתחבר למערכת בבקשה תודה')
 

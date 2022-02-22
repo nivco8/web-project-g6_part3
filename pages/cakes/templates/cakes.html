@@ -9,12 +9,19 @@
 {% block page_body_main_content %}
      <main id="Main" class="login_center">
          <div class="cakes">
+            <div id="greeting">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {{ message }}
+                {% endif %}
+            {% endwith %}
+            </div>
 
 
                 <div class="title">
                     <h1 for= "cake1">עוגות גדולות</h1>
                 </div>
-             <form action="/add_strawberry" method="post" name="add_strawberry" onsubmit="return signup_validation()" style="border:none">
+             <form action="/add_strawberry" method="post" name="add_strawberry" onsubmit="return cakes_validation1()" style="border:none">
                 <div class="option1">
                     <param id="strawberry" name="strawberry" value="סנט הונורה">
                     <h1 for= "option1">עוגת תותים</h1>
@@ -27,7 +34,7 @@
                 <input id="first_quantity" type="Submit" name="add_first_cake" value="הוסף לעגלה">
              </form>
 
-             <form action="/add_saint" method="post" name="add_saint" onsubmit="return signup_validation()" style="border:none">
+             <form action="/add_saint" method="post" name="add_saint" onsubmit="return cakes_validation2()" style="border:none">
                 <div class="option2">
                     <param id="saint_honora" name="saint_honora" value="סנט הונורה">
                     <h1 for= "option2">סנט הונורה- עוגה צרפתית קלאסית</h1>
@@ -41,7 +48,7 @@
             </form>
 
 
-             <form action="/add_crack_pie" method="post" name="add_crack_pie" onsubmit="return signup_validation()" style="border:none">
+             <form action="/add_crack_pie" method="post" name="add_crack_pie" onsubmit="return cakes_validation3()" style="border:none">
                 <div class="option3">
                     <param id="crack_pie" name="crack_pie" value="סנט הונורה">
                     <h1 for= "option3">קראק פאי</h1>
@@ -55,7 +62,7 @@
             </form>
 
 
-             <form action="/add_pie_chocolate" method="post" name="pie_chocolate" onsubmit="return signup_validation()" style="border:none">
+             <form action="/add_pie_chocolate" method="post" name="pie_chocolate" onsubmit="return cakes_validation4()" style="border:none">
                 <div class="option4">
                     <param id="saint_honora" name="saint_honora" value="סנט הונורה">
                     <h1 for= "option4">פאי שוקולד מפנק</h1>
@@ -70,10 +77,10 @@
 
          </div>
      </main>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {{ message }}
-        {% endif %}
-    {% endwith %}
+
+{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('cakes.static', filename='js/cakes.js') }}"></script>
 {% endblock %}
 

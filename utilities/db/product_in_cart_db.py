@@ -27,22 +27,27 @@ class DBProduct_in_cart:
 
 
     def clear_cart(self, cartID):
-        query = "delete from web_project_g6.productsincart where cart_id='%s';" % (cartID)
+        query = "delete from web_project_g6.productsincart where CartID='%s';" % (cartID)
         interact_db(query=query, query_type='commit')
         return True
 
+    def get_product_in_cart(self, cartID):
+        query = "SELECT * FROM web_project_g6.productsincart as PIC join web_project_g6.products as P using (ProductID)  WHERE PIC.CartID='%s';" % (cartID)
+        ans = interact_db(query=query, query_type='fetch')
+        return ans
+
 
     def delete_product_from_cart(self, cartID, product):
-        query = "delete from web_project_g6.productsincart where cartID = '%s' and cart_id='%s' and ProductID='%s';" % (cartID, product)
+        query = "delete from web_project_g6.productsincart where CartID = '%s' and ProductID='%s';" % (cartID, product)
         interact_db(query=query, query_type='commit')
         return True
 
 
     def update_product_quantity(self, cartID, product, quantity, type_of_update):
         if type_of_update == "plus":
-            query = "UPDATE web_project_g6.productsincart set Quantity='%s'+1 WHERE cartID='%s' and productID='%s';" % (quantity, cartID, product)
+            query = "UPDATE web_project_g6.productsincart set Quantity='%s'+1 WHERE CartID='%s' and productID='%s';" % (quantity, cartID, product)
         if type_of_update == "minus":
-            query = "UPDATE web_project_g6.productsincart set Quantity='%s'-1 WHERE cartID='%s' and productID='%s';" % (quantity, cartID, product)
+            query = "UPDATE web_project_g6.productsincart set Quantity='%s'-1 WHERE CartID='%s' and productID='%s';" % (quantity, cartID, product)
         interact_db(query=query, query_type='commit')
         return True
 

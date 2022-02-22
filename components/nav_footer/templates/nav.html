@@ -10,7 +10,7 @@
     <a href="contact_us" class="btn">צור קשר</a>
     <a href="newsletter" class="btn">הרשמה לניוזלטר</a>
 
-    {% if session %}
+    {% if session.login %}
         <a href="review" class="btn">כתוב ביקורת</a>
         <a href="shopping_cart" class="btn">עגלת הקניות</a>
 
@@ -25,7 +25,7 @@
 
 </div>
 
-{% if session %}
+{% if session.login %}
     <br> <br>       <label class="greeting"> {{ full_name }}  ברוכ/ה שובך </label>
 {% endif %}
 <br>

@@ -12,10 +12,16 @@ body {
     display: grid;
     grid-template-areas:
     'title title'
+    'greeting greeting'
     'option1 option2'
     'option3 option4'
     ;
     height: auto;
+}
+
+#greeting{
+    grid-area: greeting;
+
 }
 
 #option1{

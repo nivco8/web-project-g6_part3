@@ -8,13 +8,21 @@
 
 {% block page_body_main_content %}
     <div class="packs">
+        <div id="greeting">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {{ message }}
+            {% endif %}
+            {% endwith %}
+        </div>
+
 
         <div class="title">
             <h1 for= "cake1">עוגות קטנות</h1>
             <h2 for= "cake1">שילוב של מספר קינוחים קטנים זאת האופציה המושלמת למי שפשוט לא יכולים להחליט</h2>
         </div>
 
-        <form action="/add_mini_crack" method="post" name="add_first_small_cake">
+        <form action="/add_mini_crack" method="post" name="add_first_small_cake" onsubmit="return packs_validation1()">
 {#            onsubmit="return signup_validation()" style="border:none">#}
             <div class="option1">
                 <param id="crack_mini" name="crack_mini" value="קראק פאי">
@@ -29,7 +37,7 @@
         </form>
 
 
-        <form action="/add_mini_petel" method="post" name="add_second_small_cake" onsubmit="return signup_validation()" style="border:none">
+        <form action="/add_mini_petel" method="post" name="add_second_small_cake" onsubmit="return packs_validation2()"" style="border:none">
             <div class="option2">
                 <param id="petel_mini" name="petel_mini" value="קינוח פטל">
                 <h1 for= "option2">קינוח פטל</h1>
@@ -43,7 +51,7 @@
         </form>
 
 
-        <form action="/add_mini_saint" method="post" name="add_third_small_cake" onsubmit="return signup_validation()" style="border:none">
+        <form action="/add_mini_saint" method="post" name="add_third_small_cake" onsubmit="return packs_validation3()" style="border:none">
             <div class="option3">
                 <param id="saint_mini" name="saint_mini" value="סנט הונורה קטן">
                 <h1 for= "option3">סנט הונורה קטן</h1>
@@ -57,7 +65,7 @@
         </form>
 
 
-        <form action="/add_mini_blueberries" method="post" name="add_fourth_small_cake" onsubmit="return signup_validation()" style="border:none">
+        <form action="/add_mini_blueberries" method="post" name="add_fourth_small_cake" onsubmit="return packs_validation4()" style="border:none">
             <div class="option4">
                 <param id="fourth_option" value="פאי אוכמניות קטן">
                 <h1 for= "option4">פאי אוכמניות קטן</h1>
@@ -71,11 +79,7 @@
         </form>
 
     </div>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {{ message }}
-        {% endif %}
-    {% endwith %}
+
 {% endblock %}
 
 {% block page_body_js %}

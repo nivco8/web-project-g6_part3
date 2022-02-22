@@ -9,6 +9,7 @@ body {
     display: grid; 
     grid-template-areas: 
     'title title'
+    'greeting greeting'
     'option1 option2'
     'option3 option4'
     'sum sum'
@@ -25,6 +26,12 @@ body {
     grid-area: sum;
 
 }
+
+#greeting{
+    grid-area: greeting;
+
+}
+
 
 #option1{
     grid-area: option1;

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, request
+from flask import Blueprint, render_template, session, request, flash
 from utilities.db.product_in_cart_db import DBProduct_in_cart
 from utilities.db.cart_db import DBcarts
 
@@ -24,8 +24,9 @@ def add_mini_crack():
         cartID = DBcarts.get_current_cart(email)
         product = 6
         DBProduct_in_cart.add_product_to_cart(email, cartID, product, quantity)
-        return render_template('packs.html', message='פריט נוסף לעגלה!')
+        return render_template('packs.html', message='פריט נוסף לעגלה!', full_name=session.get('full_name'))
     else:
+        flash('Failed')
         return render_template('packs.html', message='לא ניתן להוסיף לעגלה, נא להתחבר למערכת בבקשה תודה')
 
 
@@ -37,8 +38,9 @@ def add_mini_petel():
         cartID = DBcarts.get_current_cart(email)
         product = 5
         DBProduct_in_cart.add_product_to_cart(email, cartID, product, quantity)
-        return render_template('packs.html', message='פריט נוסף לעגלה!')
+        return render_template('packs.html', message='פריט נוסף לעגלה!', full_name=session.get('full_name'))
     else:
+        flash('Failed')
         return render_template('packs.html', message='לא ניתן להוסיף לעגלה, נא להתחבר למערכת בבקשה תודה')
 
 
@@ -50,8 +52,9 @@ def add_mini_saint():
         cartID = DBcarts.get_current_cart(email)
         product = 8
         DBProduct_in_cart.add_product_to_cart(email, cartID, product, quantity)
-        return render_template('packs.html', message='פריט נוסף לעגלה!')
+        return render_template('packs.html', message='פריט נוסף לעגלה!', full_name=session.get('full_name'))
     else:
+        flash('Failed')
         return render_template('packs.html', message='לא ניתן להוסיף לעגלה, נא להתחבר למערכת בבקשה תודה')
 
 
@@ -63,8 +66,9 @@ def add_mini_blueberries():
         cartID = DBcarts.get_current_cart(email)
         product = 7
         DBProduct_in_cart.add_product_to_cart(email, cartID, product, quantity)
-        return render_template('packs.html', message='פריט נוסף לעגלה!')
+        return render_template('packs.html', message='פריט נוסף לעגלה!', full_name=session.get('full_name'))
     else:
+        flash('Failed')
         return render_template('packs.html', message='לא ניתן להוסיף לעגלה, נא להתחבר למערכת בבקשה תודה')
 
 

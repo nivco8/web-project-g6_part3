@@ -1,6 +1,6 @@
 
 
-function packs_validation1() {
+function cakes_validation1() {
 
   if (document.getElementById("quantity1").value < 1){
     window.alert("יש להוסיף לפחות פריט אחד");
@@ -9,7 +9,7 @@ function packs_validation1() {
   return true;
 }
 
-function packs_validation2() {
+function cakes_validation2() {
 
   if (document.getElementById("quantity2").value < 1){
     window.alert("יש להוסיף לפחות פריט אחד");
@@ -18,7 +18,7 @@ function packs_validation2() {
   return true;
 }
 
-function packs_validation3() {
+function cakes_validation3() {
 
   if (document.getElementById("quantity3").value < 1){
     window.alert("יש להוסיף לפחות פריט אחד");
@@ -27,7 +27,7 @@ function packs_validation3() {
   return true;
 }
 
-function packs_validation4() {
+function cakes_validation4() {
 
   if (document.getElementById("quantity4").value < 1){
     window.alert("יש להוסיף לפחות פריט אחד");

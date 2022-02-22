@@ -14,6 +14,7 @@ class DBcarts:
                 CartID = cart.CartID
         return CartID
 
+
     def add_cart(self, CustomerEmail):
         current_dt = datetime.now()
         query = "insert into web_project_g6.carts (CustomerEmail, CreationTime, Price, ShippingCost, TotalPrice)\
